@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <cmath>
 #include <sstream>
+#include <random>
+#include <vector>
 
 namespace {
 
@@ -298,6 +300,82 @@ void test_cpu_ikj_matches_reference_and_overwrites() {
     );
 }
 
+void test_cpu_implementations_on_multiple_shapes() {
+    const std::size_t shapes[][3] = {
+        {1, 1, 1},
+        {2, 3, 4},
+        {3, 5, 7},
+        {5, 3, 4},
+        {7, 1, 9},
+        {1, 8, 3}
+    };
+
+    std::mt19937 generator(20260825);
+    std::uniform_real_distribution<float> distribution(-2.0F, 2.0F);
+
+    for (const auto& shape : shapes) {
+        const std::size_t M = shape[0];
+        const std::size_t N = shape[1];
+        const std::size_t K = shape[2];
+
+        std::vector<float> A(M * K);
+        std::vector<float> B(K * N);
+
+        for (float& value : A) {
+            value = distribution(generator);
+        }
+
+        for (float& value : B) {
+            value = distribution(generator);
+        }
+
+        std::vector<float> expected(M * N);
+        std::vector<float> actual_ijk(M * N, 999.0F);
+        std::vector<float> actual_ikj(M * N, 999.0F);
+
+        mini_gpu::matmul_reference(
+            A.data(),
+            B.data(),
+            expected.data(),
+            M,
+            N,
+            K
+        );
+
+        mini_gpu::matmul_cpu_ijk(
+            A.data(),
+            B.data(),
+            actual_ijk.data(),
+            M,
+            N,
+            K
+        );
+
+        mini_gpu::matmul_cpu_ikj(
+            A.data(),
+            B.data(),
+            actual_ikj.data(),
+            M,
+            N,
+            K
+        );
+
+        expect_array_near(
+            actual_ijk.data(),
+            expected.data(),
+            M * N,
+            "test_cpu_implementations_on_multiple_shapes: ijk"
+        );
+
+        expect_array_near(
+            actual_ikj.data(),
+            expected.data(),
+            M * N,
+            "test_cpu_implementations_on_multiple_shapes: ikj"
+        );
+    }
+}
+
 int main() {
     try {
         test_one_by_one_overwrite();
@@ -308,6 +386,7 @@ int main() {
 	test_decimal_and_negative_values();
 	test_cpu_ijk_matches_reference();
 	test_cpu_ikj_matches_reference_and_overwrites();
+	test_cpu_implementations_on_multiple_shapes();
     } catch (const std::exception& error) {
         std::cerr << "TEST FAILED: " << error.what() << '\n';
         return 1;
