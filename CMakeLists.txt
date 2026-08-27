@@ -44,6 +44,22 @@ target_compile_options(correctness_test
         -Wpedantic
 )
 
+add_executable(cpu_benchmark
+    benchmarks/cpu_benchmark.cpp
+)
+
+target_link_libraries(cpu_benchmark
+    PRIVATE
+        matmul_cpu
+)
+
+target_compile_options(cpu_benchmark
+    PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
+)
+
 enable_testing()
 
 add_test(
