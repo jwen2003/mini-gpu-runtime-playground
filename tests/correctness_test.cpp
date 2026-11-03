@@ -1,139 +1,35 @@
 #include "matmul.hpp"
 
-#include <iostream>
-#include <stdexcept>
 #include <cmath>
-#include <sstream>
+#include <cstddef>
+#include <iostream>
 #include <random>
+#include <sstream>
+#include <stdexcept>
+#include <string>
 #include <vector>
 
 namespace {
 
-void test_one_by_one_overwrite() {
-    const float A[] = {2.0F};
-    const float B[] = {3.0F};
-    float C[] = {999.0F};
+using MatmulFunction = void (*)(
+    const float*,
+    const float*,
+    float*,
+    std::size_t,
+    std::size_t,
+    std::size_t
+);
 
-    mini_gpu::matmul_reference(
-        A,
-        B,
-        C,
-        1,  // M
-        1,  // N
-        1   // K
-    );
+struct MatmulImplementation {
+    const char* name;
+    MatmulFunction function;
+};
 
-    const float expected = 6.0F;
-
-    if (C[0] != expected) {
-        throw std::runtime_error(
-            "test_one_by_one_overwrite failed"
-        );
-    }
-}
-
-}  // namespace
-
-void test_two_by_three_times_three_by_two() {
-    const float A[] = {
-        1.0F, 2.0F, 3.0F,
-        4.0F, 5.0F, 6.0F
-    };
-
-    const float B[] = {
-         7.0F,  8.0F,
-         9.0F, 10.0F,
-        11.0F, 12.0F
-    };
-
-    float C[] = {
-        999.0F, 999.0F,
-        999.0F, 999.0F
-    };
-
-    const float expected[] = {
-         58.0F,  64.0F,
-        139.0F, 154.0F
-    };
-
-    mini_gpu::matmul_reference(
-        A,
-        B,
-        C,
-        2,  // M
-        2,  // N
-        3   // K
-    );
-
-    for (std::size_t index = 0; index < 4; ++index) {
-        if (C[index] != expected[index]) {
-            throw std::runtime_error(
-                "test_two_by_three_times_three_by_two failed"
-            );
-        }
-    }
-}
-
-void test_zero_k_writes_zero_output() {
-    float C[] = {
-        999.0F, 999.0F, 999.0F,
-        999.0F, 999.0F, 999.0F
-    };
-
-    mini_gpu::matmul_reference(
-        nullptr,
-        nullptr,
-        C,
-        2,  // M
-        3,  // N
-        0   // K
-    );
-
-    for (std::size_t index = 0; index < 6; ++index) {
-        if (C[index] != 0.0F) {
-            throw std::runtime_error(
-                "test_zero_k_writes_zero_output failed"
-            );
-        }
-    }
-}
-
-void test_zero_m_allows_null_pointers() {
-    mini_gpu::matmul_reference(
-        nullptr,
-        nullptr,
-        nullptr,
-        0,  // M
-        3,  // N
-        5   // K
-    );
-}
-
-void test_null_c_throws() {
-    const float A[] = {2.0F};
-    const float B[] = {3.0F};
-
-    bool caught_expected_exception = false;
-
-    try {
-        mini_gpu::matmul_reference(
-            A,
-            B,
-            nullptr,
-            1,  // M
-            1,  // N
-            1   // K
-        );
-    } catch (const std::invalid_argument&) {
-        caught_expected_exception = true;
-    }
-
-    if (!caught_expected_exception) {
-        throw std::runtime_error(
-            "test_null_c_throws failed: expected std::invalid_argument"
-        );
-    }
-}
+constexpr MatmulImplementation regular_implementations[] = {
+    {"matmul_reference", mini_gpu::matmul_reference},
+    {"matmul_cpu_ijk", mini_gpu::matmul_cpu_ijk},
+    {"matmul_cpu_ikj", mini_gpu::matmul_cpu_ikj}
+};
 
 bool nearly_equal(
     float actual,
@@ -149,20 +45,20 @@ bool nearly_equal(
         return actual == expected;
     }
 
-    const float absolute_error = std::fabs(actual - expected);
-    const float allowed_error =
-        atol + rtol * std::fabs(expected);
-
-    return absolute_error <= allowed_error;
+    return std::fabs(actual - expected)
+        <= atol + rtol * std::fabs(expected);
 }
 
 void expect_array_near(
-    const float* actual,
-    const float* expected,
-    std::size_t count,
-    const char* test_name
+    const std::vector<float>& actual,
+    const std::vector<float>& expected,
+    const std::string& test_name
 ) {
-    for (std::size_t index = 0; index < count; ++index) {
+    if (actual.size() != expected.size()) {
+        throw std::runtime_error(test_name + " failed: size mismatch");
+    }
+
+    for (std::size_t index = 0; index < actual.size(); ++index) {
         if (!nearly_equal(actual[index], expected[index])) {
             std::ostringstream message;
             message
@@ -170,138 +66,80 @@ void expect_array_near(
                 << " failed at index " << index
                 << ": actual=" << actual[index]
                 << ", expected=" << expected[index];
-
             throw std::runtime_error(message.str());
         }
     }
 }
 
-void test_decimal_and_negative_values() {
-    const float A[] = {
-        0.1F, -0.2F,
-        1.5F,  0.3F
-    };
+template <typename Operation>
+void expect_invalid_argument(
+    Operation operation,
+    const std::string& test_name
+) {
+    bool caught = false;
 
-    const float B[] = {
-         0.4F, 2.0F,
-        -1.0F, 0.5F
-    };
+    try {
+        operation();
+    } catch (const std::invalid_argument&) {
+        caught = true;
+    }
 
-    float C[] = {
-        999.0F, 999.0F,
-        999.0F, 999.0F
-    };
-
-    const float expected[] = {
-        0.24F, 0.10F,
-        0.30F, 3.15F
-    };
-
-    mini_gpu::matmul_reference(
-        A,
-        B,
-        C,
-        2,  // M
-        2,  // N
-        2   // K
-    );
-
-    expect_array_near(
-        C,
-        expected,
-        4,
-        "test_decimal_and_negative_values"
-    );
+    if (!caught) {
+        throw std::runtime_error(
+            test_name + " failed: expected std::invalid_argument"
+        );
+    }
 }
 
-void test_cpu_ijk_matches_reference() {
-    const float A[] = {
-         0.25F, -1.50F,  2.00F,
-         3.00F,  0.50F, -0.75F
+void test_known_matrix_for_all_implementations() {
+    const std::vector<float> A = {
+        1.0F, 2.0F, 3.0F,
+        4.0F, 5.0F, 6.0F
+    };
+    const std::vector<float> B = {
+         7.0F,  8.0F,
+         9.0F, 10.0F,
+        11.0F, 12.0F
+    };
+    const std::vector<float> expected = {
+         58.0F,  64.0F,
+        139.0F, 154.0F
     };
 
-    const float B[] = {
-         1.00F, -2.00F,
-         0.50F,  4.00F,
-        -1.00F,  0.25F
+    for (const auto& implementation : regular_implementations) {
+        std::vector<float> actual(4, 999.0F);
+        implementation.function(
+            A.data(), B.data(), actual.data(), 2, 2, 3
+        );
+        expect_array_near(actual, expected, implementation.name);
+    }
+
+    std::vector<float> B_transposed(6);
+    mini_gpu::transpose_b(B.data(), B_transposed.data(), 2, 3);
+
+    const std::vector<float> expected_transposed = {
+        7.0F, 9.0F, 11.0F,
+        8.0F, 10.0F, 12.0F
     };
-
-    float expected[4] = {};
-    float actual[4] = {};
-
-    mini_gpu::matmul_reference(
-        A,
-        B,
-        expected,
-        2,  // M
-        2,  // N
-        3   // K
+    expect_array_near(
+        B_transposed,
+        expected_transposed,
+        "transpose_b known matrix"
     );
 
-    mini_gpu::matmul_cpu_ijk(
-        A,
-        B,
-        actual,
-        2,  // M
-        2,  // N
-        3   // K
+    std::vector<float> actual(4, 999.0F);
+    mini_gpu::matmul_cpu_transposed_b(
+        A.data(), B_transposed.data(), actual.data(), 2, 2, 3
     );
-
     expect_array_near(
         actual,
         expected,
-        4,
-        "test_cpu_ijk_matches_reference"
+        "matmul_cpu_transposed_b known matrix"
     );
 }
 
-void test_cpu_ikj_matches_reference_and_overwrites() {
-    const float A[] = {
-         0.25F, -1.50F,  2.00F,
-         3.00F,  0.50F, -0.75F
-    };
-
-    const float B[] = {
-         1.00F, -2.00F,
-         0.50F,  4.00F,
-        -1.00F,  0.25F
-    };
-
-    float expected[4] = {};
-
-    float actual[] = {
-        999.0F, 999.0F,
-        999.0F, 999.0F
-    };
-
-    mini_gpu::matmul_reference(
-        A,
-        B,
-        expected,
-        2,  // M
-        2,  // N
-        3   // K
-    );
-
-    mini_gpu::matmul_cpu_ikj(
-        A,
-        B,
-        actual,
-        2,  // M
-        2,  // N
-        3   // K
-    );
-
-    expect_array_near(
-        actual,
-        expected,
-        4,
-        "test_cpu_ikj_matches_reference_and_overwrites"
-    );
-}
-
-void test_cpu_implementations_on_multiple_shapes() {
-    const std::size_t shapes[][3] = {
+void test_all_implementations_on_multiple_shapes() {
+    constexpr std::size_t shapes[][3] = {
         {1, 1, 1},
         {2, 3, 4},
         {3, 5, 7},
@@ -320,73 +158,152 @@ void test_cpu_implementations_on_multiple_shapes() {
 
         std::vector<float> A(M * K);
         std::vector<float> B(K * N);
-
         for (float& value : A) {
             value = distribution(generator);
         }
-
         for (float& value : B) {
             value = distribution(generator);
         }
 
         std::vector<float> expected(M * N);
-        std::vector<float> actual_ijk(M * N, 999.0F);
-        std::vector<float> actual_ikj(M * N, 999.0F);
-
         mini_gpu::matmul_reference(
+            A.data(), B.data(), expected.data(), M, N, K
+        );
+
+        for (const auto& implementation : regular_implementations) {
+            std::vector<float> actual(M * N, 999.0F);
+            implementation.function(
+                A.data(), B.data(), actual.data(), M, N, K
+            );
+            expect_array_near(
+                actual,
+                expected,
+                std::string(implementation.name) + " multi-shape"
+            );
+        }
+
+        std::vector<float> B_transposed(N * K);
+        mini_gpu::transpose_b(
+            B.data(), B_transposed.data(), N, K
+        );
+
+        std::vector<float> actual_transposed(M * N, 999.0F);
+        mini_gpu::matmul_cpu_transposed_b(
             A.data(),
-            B.data(),
-            expected.data(),
+            B_transposed.data(),
+            actual_transposed.data(),
             M,
             N,
             K
         );
-
-        mini_gpu::matmul_cpu_ijk(
-            A.data(),
-            B.data(),
-            actual_ijk.data(),
-            M,
-            N,
-            K
-        );
-
-        mini_gpu::matmul_cpu_ikj(
-            A.data(),
-            B.data(),
-            actual_ikj.data(),
-            M,
-            N,
-            K
-        );
-
         expect_array_near(
-            actual_ijk.data(),
-            expected.data(),
-            M * N,
-            "test_cpu_implementations_on_multiple_shapes: ijk"
-        );
-
-        expect_array_near(
-            actual_ikj.data(),
-            expected.data(),
-            M * N,
-            "test_cpu_implementations_on_multiple_shapes: ikj"
+            actual_transposed,
+            expected,
+            "matmul_cpu_transposed_b multi-shape"
         );
     }
 }
 
+void test_zero_size_semantics() {
+    for (const auto& implementation : regular_implementations) {
+        implementation.function(nullptr, nullptr, nullptr, 0, 3, 5);
+
+        std::vector<float> C(6, 999.0F);
+        implementation.function(nullptr, nullptr, C.data(), 2, 3, 0);
+        expect_array_near(
+            C,
+            std::vector<float>(6, 0.0F),
+            std::string(implementation.name) + " K=0"
+        );
+    }
+
+    mini_gpu::transpose_b(nullptr, nullptr, 0, 5);
+    mini_gpu::transpose_b(nullptr, nullptr, 3, 0);
+    mini_gpu::matmul_cpu_transposed_b(
+        nullptr, nullptr, nullptr, 0, 3, 5
+    );
+
+    std::vector<float> C(6, 999.0F);
+    mini_gpu::matmul_cpu_transposed_b(
+        nullptr, nullptr, C.data(), 2, 3, 0
+    );
+    expect_array_near(
+        C,
+        std::vector<float>(6, 0.0F),
+        "matmul_cpu_transposed_b K=0"
+    );
+}
+
+void test_invalid_pointer_semantics() {
+    const float value = 1.0F;
+    float output = 0.0F;
+
+    for (const auto& implementation : regular_implementations) {
+        const MatmulFunction function = implementation.function;
+        expect_invalid_argument(
+            [function]() {
+                const float local_value = 1.0F;
+                function(
+                    &local_value, &local_value, nullptr, 1, 1, 1
+                );
+            },
+            std::string(implementation.name) + " null C"
+        );
+    }
+
+    expect_invalid_argument(
+        []() {
+            float local_output = 0.0F;
+            mini_gpu::transpose_b(nullptr, &local_output, 1, 1);
+        },
+        "transpose_b null B"
+    );
+
+    expect_invalid_argument(
+        []() {
+            const float local_value = 1.0F;
+            mini_gpu::transpose_b(&local_value, nullptr, 1, 1);
+        },
+        "transpose_b null output"
+    );
+
+    expect_invalid_argument(
+        []() {
+            const float local_value = 1.0F;
+            mini_gpu::matmul_cpu_transposed_b(
+                &local_value, &local_value, nullptr, 1, 1, 1
+            );
+        },
+        "matmul_cpu_transposed_b null C"
+    );
+
+    expect_invalid_argument(
+        [&value, &output]() {
+            mini_gpu::matmul_cpu_transposed_b(
+                nullptr, &value, &output, 1, 1, 1
+            );
+        },
+        "matmul_cpu_transposed_b null A"
+    );
+
+    expect_invalid_argument(
+        [&value, &output]() {
+            mini_gpu::matmul_cpu_transposed_b(
+                &value, nullptr, &output, 1, 1, 1
+            );
+        },
+        "matmul_cpu_transposed_b null B_transposed"
+    );
+}
+
+}  // namespace
+
 int main() {
     try {
-        test_one_by_one_overwrite();
-	test_two_by_three_times_three_by_two();
-	test_zero_k_writes_zero_output();
-    	test_zero_m_allows_null_pointers();
-	test_null_c_throws();
-	test_decimal_and_negative_values();
-	test_cpu_ijk_matches_reference();
-	test_cpu_ikj_matches_reference_and_overwrites();
-	test_cpu_implementations_on_multiple_shapes();
+        test_known_matrix_for_all_implementations();
+        test_all_implementations_on_multiple_shapes();
+        test_zero_size_semantics();
+        test_invalid_pointer_semantics();
     } catch (const std::exception& error) {
         std::cerr << "TEST FAILED: " << error.what() << '\n';
         return 1;
