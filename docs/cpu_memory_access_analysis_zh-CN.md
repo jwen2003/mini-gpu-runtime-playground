@@ -1,5 +1,7 @@
 # 从矩阵乘法到 GPU Kernel 的性能优化分析：CPU 内存访问分析
 
+[English](cpu_memory_access_analysis_en.md) | [简体中文](cpu_memory_access_analysis_zh-CN.md)
+
 ## 1. 分析目标
 
 本阶段研究两个数学等价的 CPU Matmul 实现为何产生显著性能差异，并调查 `cpu_ijk` 在 `N=256` 出现的特殊性能低谷。

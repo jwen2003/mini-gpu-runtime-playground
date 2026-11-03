@@ -41,9 +41,9 @@ Fast-math is experimental and disabled by default. A future runtime must require
 
 ## Documentation
 
-Detailed evidence, options, timing boundaries, and limitations are maintained in Chinese:
+Detailed evidence, options, timing boundaries, and limitations are available in English and Chinese:
 
-- [Design / 设计](docs/design_intent_zh-CN.md)
-- [Methodology / 测量方法](docs/benchmark_methodology_zh-CN.md)
-- [CPU analysis / CPU 分析](docs/cpu_memory_access_analysis_zh-CN.md)
-- [Numerical semantics / 数值语义](docs/numerical_semantics_analysis_zh-CN.md)
+- [Design / 设计](docs/design_intent_en.md)
+- [Methodology / 测量方法](docs/benchmark_methodology_en.md)
+- [CPU analysis / CPU 分析](docs/cpu_memory_access_analysis_en.md)
+- [Numerical semantics / 数值语义](docs/numerical_semantics_analysis_en.md)

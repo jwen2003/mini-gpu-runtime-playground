@@ -1,5 +1,7 @@
 # 从矩阵乘法到 GPU Kernel 的性能优化分析：数值语义分析
 
+[English](numerical_semantics_analysis_en.md) | [简体中文](numerical_semantics_analysis_zh-CN.md)
+
 ## 1. 目标
 
 本文档研究浮点归约语义怎样限制编译器优化，并评估 native fast-math Transposed Kernel 的性能收益与数值代价。

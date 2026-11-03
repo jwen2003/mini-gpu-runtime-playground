@@ -1,5 +1,7 @@
 # 从矩阵乘法到 GPU Kernel 的性能优化分析：基准测试方法
 
+[English](benchmark_methodology_en.md) | [简体中文](benchmark_methodology_zh-CN.md)
+
 ## 1. 目的
 
 本文档定义项目的正确性与性能测量协议。目标不是消除所有系统噪声，而是使不同实现和不同尺寸之间的比较具有一致、可解释、可复现的口径。

@@ -1,5 +1,7 @@
 # 从矩阵乘法到 GPU Kernel 的性能优化分析：设计意图
 
+[English](design_intent_en.md) | [简体中文](design_intent_zh-CN.md)
+
 ## 1. 目标
 
 建立一个行为明确、可重复验证的 FP32 矩阵乘法实验平台，从 CPU 基线逐步扩展到 CUDA Kernel 与最小 Runtime 调度，并形成从程序访问模式到硬件性能现象的可验证因果链。
