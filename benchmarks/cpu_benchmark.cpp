@@ -1,13 +1,16 @@
 #include "matmul.hpp"
 
 #include <algorithm>
+#include <charconv>
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <iomanip>
 #include <iostream>
 #include <random>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace {
@@ -401,12 +404,129 @@ void run_counter_mode(
         << '\n';
 }
 
+struct BlockShape {
+    std::size_t m;
+    std::size_t n;
+    std::size_t k;
+};
+
+std::size_t positive_size(std::string_view argument) {
+    std::size_t value = 0;
+    const auto end = argument.data() + argument.size();
+    const auto result = std::from_chars(argument.data(), end, value);
+    if (result.ec != std::errc{} || result.ptr != end || value == 0) {
+        throw std::invalid_argument("expected a positive integer: " + std::string(argument));
+    }
+    return value;
+}
+
+std::size_t matrix_elements(std::size_t rows, std::size_t columns) {
+    if (rows > std::vector<float>().max_size() / columns) {
+        throw std::invalid_argument("matrix dimensions exceed buffer limits");
+    }
+    return rows * columns;
+}
+
+int run_blocked_experiment(int argc, char* argv[], bool counter_mode) {
+    if ((!counter_mode && argc != 5 && argc != 8)
+        || (counter_mode && argc != 6 && argc != 9)) {
+        throw std::invalid_argument("invalid number of blocked experiment arguments");
+    }
+
+    const auto M = positive_size(argv[2]);
+    const auto N = positive_size(argv[3]);
+    const auto K = positive_size(argv[4]);
+    std::vector<float> A(matrix_elements(M, K));
+    std::vector<float> B(matrix_elements(K, N));
+    std::vector<float> C(matrix_elements(M, N));
+    std::mt19937 generator(20260825);
+    std::uniform_real_distribution<float> distribution(-1.0F, 1.0F);
+    for (float& value : A) {
+        value = distribution(generator);
+    }
+    for (float& value : B) {
+        value = distribution(generator);
+    }
+
+    // A zero block shape denotes the original ikj, never a kernel argument.
+    const auto run = [&](BlockShape block) {
+        if (block.m == 0) {
+            mini_gpu::matmul_cpu_ikj(A.data(), B.data(), C.data(), M, N, K);
+        } else {
+            mini_gpu::matmul_cpu_blocked_ikj(
+                A.data(), B.data(), C.data(), M, N, K, block.m, block.n, block.k
+            );
+        }
+    };
+    const auto parse_block = [&](int first) {
+        return BlockShape{
+            positive_size(argv[first]), positive_size(argv[first + 1]),
+            positive_size(argv[first + 2])
+        };
+    };
+
+    if (counter_mode) {
+        const auto count = positive_size(argv[5]);
+        const auto block = argc == 9 ? parse_block(6) : BlockShape{0, 0, 0};
+        for (std::size_t i = 0; i < count; ++i) {
+            run(block);
+        }
+        std::cout << "counter_iterations=" << count << ", checksum=" << checksum(C) << '\n';
+        return 0;
+    }
+
+    std::vector<BlockShape> variants{{0, 0, 0}};
+    if (argc == 8) {
+        variants.push_back(parse_block(5));
+    } else {
+        for (const std::size_t side : {8, 16, 32, 64, 128}) {
+            variants.push_back({side, side, side});
+        }
+    }
+
+    std::vector<float> expected(C.size());
+    mini_gpu::matmul_reference(A.data(), B.data(), expected.data(), M, N, K);
+    for (const auto block : variants) {
+        for (int warmup = 0; warmup < 5; ++warmup) {
+            run(block);
+        }
+        verify_result(C, expected, block.m == 0 ? "ikj" : "blocked-ikj");
+    }
+
+    // Interleave all variants to reduce order, frequency, and temperature bias.
+    // Batch smaller cases to increase elapsed time per clock measurement.
+    const auto calls = static_cast<std::size_t>(std::clamp(
+        32.0e6 / matmul_operation_count(M, N, K), 1.0, 256.0
+    ));
+    constexpr int rounds = 21;
+    std::mt19937 order(20261110);
+    std::cout << std::setprecision(12)
+              << "m,n,k,bm,bn,bk,round,calls,elapsed_ns,ns_per_call\n";
+    for (int round = 1; round <= rounds; ++round) {
+        std::shuffle(variants.begin(), variants.end(), order);
+        for (const auto block : variants) {
+            const auto start = std::chrono::steady_clock::now();
+            for (std::size_t call = 0; call < calls; ++call) {
+                run(block);
+            }
+            const auto elapsed = std::chrono::steady_clock::now() - start;
+            const double ns = std::chrono::duration<double, std::nano>(elapsed).count();
+            std::cout << M << ',' << N << ',' << K << ',' << block.m << ','
+                      << block.n << ',' << block.k << ',' << round << ',' << calls
+                      << ',' << ns << ',' << ns / static_cast<double>(calls) << '\n';
+        }
+    }
+    return 0;
+}
+
 void print_usage(const char* program) {
     std::cerr
         << "Usage:\n"
         << "  " << program << " <implementation> <N>\n"
         << "  " << program
         << " <implementation> <N> --counter <iterations>\n"
+        << "  " << program << " blocked-sweep M N K [BM BN BK]\n"
+        << "  " << program << " blocked-counter M N K iterations [BM BN BK]\n"
         << "Implementations:\n"
         << "  ijk\n"
         << "  ikj\n"
@@ -418,6 +538,19 @@ void print_usage(const char* program) {
 }  // namespace
 
 int main(int argc, char* argv[]) {
+    if (argc > 1) {
+        const std::string_view mode = argv[1];
+        if (mode == "blocked-sweep" || mode == "blocked-counter") {
+            try {
+                return run_blocked_experiment(argc, argv, mode == "blocked-counter");
+            } catch (const std::exception& error) {
+                std::cerr << error.what() << '\n';
+                print_usage(argv[0]);
+                return 1;
+            }
+        }
+    }
+
     constexpr std::size_t M = 256;
     constexpr std::size_t K = 256;
 

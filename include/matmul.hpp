@@ -31,6 +31,19 @@ void matmul_cpu_ikj(
     std::size_t K
 );
 
+// BM, BN, and BK must be positive. C is overwritten as in matmul_cpu_ikj.
+void matmul_cpu_blocked_ikj(
+    const float* A,
+    const float* B,
+    float* C,
+    std::size_t M,
+    std::size_t N,
+    std::size_t K,
+    std::size_t BM,
+    std::size_t BN,
+    std::size_t BK
+);
+
 void transpose_b(
     const float* B,
     float* B_transposed,

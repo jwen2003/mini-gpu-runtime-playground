@@ -1,0 +1,102 @@
+{
+  "utc_start": "2026-11-10T18:38:18Z",
+  "base_commit": "8002c4864e4e79957645156113b338f4df37d01b",
+  "cpu_affinity": 4,
+  "passes": 2,
+  "compiler": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "kernel": "Linux 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux",
+  "os_release": "PRETTY_NAME=\"Ubuntu 26.04 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04 (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 7 7730U with Radeon Graphics\nCPU family:                              25\nModel:                                   80\nThread(s) per core:                      2\nCore(s) per socket:                      8\nSocket(s):                               1\nStepping:                                0\nBogoMIPS:                                3992.40\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr arat umip vaes vpclmulqdq rdpid fsrm\nHypervisor vendor:                       Microsoft\nVirtualization type:                     full\nL1d cache:                               256 KiB (8 instances)\nL1i cache:                               256 KiB (8 instances)\nL2 cache:                                4 MiB (8 instances)\nL3 cache:                                16 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Vulnerable: Safe RET, no microcode\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Vulnerable: No microcode\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected",
+  "cache": "NAME ONE-SIZE ALL-SIZE WAYS TYPE        LEVEL  SETS PHY-LINE COHERENCY-SIZE\nL1d       32K     256K    8 Data            1    64        1             64\nL1i       32K     256K    8 Instruction     1    64        1             64\nL2       512K       4M    8 Unified         2  1024        1             64\nL3        16M      16M   16 Unified         3 16384        1             64",
+  "compile_commands": [
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/reference.cpp.o -c <REPO>/src/cpu/reference.cpp",
+      "file": "<REPO>/src/cpu/reference.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/matmul_cpu.dir/src/cpu/reference.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/ijk.cpp.o -c <REPO>/src/cpu/ijk.cpp",
+      "file": "<REPO>/src/cpu/ijk.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/matmul_cpu.dir/src/cpu/ijk.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/ikj.cpp.o -c <REPO>/src/cpu/ikj.cpp",
+      "file": "<REPO>/src/cpu/ikj.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/matmul_cpu.dir/src/cpu/ikj.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/blocked_ikj.cpp.o -c <REPO>/src/cpu/blocked_ikj.cpp",
+      "file": "<REPO>/src/cpu/blocked_ikj.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/matmul_cpu.dir/src/cpu/blocked_ikj.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/transposed_b.cpp.o -c <REPO>/src/cpu/transposed_b.cpp",
+      "file": "<REPO>/src/cpu/transposed_b.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/matmul_cpu.dir/src/cpu/transposed_b.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/correctness_test.dir/tests/correctness_test.cpp.o -c <REPO>/tests/correctness_test.cpp",
+      "file": "<REPO>/tests/correctness_test.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/correctness_test.dir/tests/correctness_test.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/cpu_benchmark.dir/benchmarks/cpu_benchmark.cpp.o -c <REPO>/benchmarks/cpu_benchmark.cpp",
+      "file": "<REPO>/benchmarks/cpu_benchmark.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/cpu_benchmark.dir/benchmarks/cpu_benchmark.cpp.o"
+    },
+    {
+      "directory": "<REPO>/build-blocked",
+      "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/blocked_numerics_test.dir/tests/blocked_numerics_test.cpp.o -c <REPO>/tests/blocked_numerics_test.cpp",
+      "file": "<REPO>/tests/blocked_numerics_test.cpp",
+      "output": "<REPO>/build-blocked/CMakeFiles/blocked_numerics_test.dir/tests/blocked_numerics_test.cpp.o"
+    }
+  ],
+  "perf_event_paranoid": "2",
+  "sweep_wall_seconds": {
+    "128": [
+      0.334,
+      0.332
+    ],
+    "255": [
+      0.437,
+      0.442
+    ],
+    "256": [
+      0.443,
+      0.445
+    ],
+    "257": [
+      0.518,
+      0.48
+    ],
+    "511": [
+      3.835,
+      4.179
+    ],
+    "512": [
+      4.182,
+      4.355
+    ],
+    "513": [
+      4.044,
+      4.446
+    ],
+    "1024": [
+      45.216,
+      45.845
+    ]
+  },
+  "pmu_sizes": [
+    128,
+    511,
+    1024
+  ],
+  "perf_version": "perf version 7.0.14"
+}

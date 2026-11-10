@@ -361,4 +361,4 @@ vaddps ymm1, ymm1, ymm0
 → 同时引入数值语义风险
 ```
 
-数值风险与反例见 `numerical_semantics_analysis_zh-CN.md`。下一 CPU 性能阶段进入 cache blocking 和 block-size sweep，不优先优化当前约 0.126 ms 的朴素 transpose。
+数值风险与反例见 `numerical_semantics_analysis_zh-CN.md`。后续的块尺寸扫描见[缓存分块实验](blocked_ikj_zh-CN.md)。朴素转置的实测时间约为 0.126 ms。

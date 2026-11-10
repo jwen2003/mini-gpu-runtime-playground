@@ -1,0 +1,80 @@
+[
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/reference.cpp.o -c <REPO>/src/cpu/reference.cpp",
+  "file": "<REPO>/src/cpu/reference.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_cpu.dir/src/cpu/reference.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/ijk.cpp.o -c <REPO>/src/cpu/ijk.cpp",
+  "file": "<REPO>/src/cpu/ijk.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_cpu.dir/src/cpu/ijk.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/ikj.cpp.o -c <REPO>/src/cpu/ikj.cpp",
+  "file": "<REPO>/src/cpu/ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_cpu.dir/src/cpu/ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/blocked_ikj.cpp.o -c <REPO>/src/cpu/blocked_ikj.cpp",
+  "file": "<REPO>/src/cpu/blocked_ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_cpu.dir/src/cpu/blocked_ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_cpu.dir/src/cpu/transposed_b.cpp.o -c <REPO>/src/cpu/transposed_b.cpp",
+  "file": "<REPO>/src/cpu/transposed_b.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_cpu.dir/src/cpu/transposed_b.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/correctness_test.dir/tests/correctness_test.cpp.o -c <REPO>/tests/correctness_test.cpp",
+  "file": "<REPO>/tests/correctness_test.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/correctness_test.dir/tests/correctness_test.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/cpu_benchmark.dir/benchmarks/cpu_benchmark.cpp.o -c <REPO>/benchmarks/cpu_benchmark.cpp",
+  "file": "<REPO>/benchmarks/cpu_benchmark.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/cpu_benchmark.dir/benchmarks/cpu_benchmark.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/blocked_numerics_test.dir/tests/blocked_numerics_test.cpp.o -c <REPO>/tests/blocked_numerics_test.cpp",
+  "file": "<REPO>/tests/blocked_numerics_test.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/blocked_numerics_test.dir/tests/blocked_numerics_test.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/matmul_register_strict.dir/src/cpu/register_blocked_ikj.cpp.o -c <REPO>/src/cpu/register_blocked_ikj.cpp",
+  "file": "<REPO>/src/cpu/register_blocked_ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_register_strict.dir/src/cpu/register_blocked_ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -Dmatmul_cpu_blocked_ikj=matmul_cpu_blocked_ikj_fast -Dmatmul_cpu_ikj=matmul_cpu_ikj_fast -Dmatmul_cpu_register_blocked_ikj=matmul_cpu_register_blocked_ikj_fast -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -ffast-math -o CMakeFiles/matmul_register_fast.dir/src/cpu/ikj.cpp.o -c <REPO>/src/cpu/ikj.cpp",
+  "file": "<REPO>/src/cpu/ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_register_fast.dir/src/cpu/ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -Dmatmul_cpu_blocked_ikj=matmul_cpu_blocked_ikj_fast -Dmatmul_cpu_ikj=matmul_cpu_ikj_fast -Dmatmul_cpu_register_blocked_ikj=matmul_cpu_register_blocked_ikj_fast -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -ffast-math -o CMakeFiles/matmul_register_fast.dir/src/cpu/blocked_ikj.cpp.o -c <REPO>/src/cpu/blocked_ikj.cpp",
+  "file": "<REPO>/src/cpu/blocked_ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_register_fast.dir/src/cpu/blocked_ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -Dmatmul_cpu_blocked_ikj=matmul_cpu_blocked_ikj_fast -Dmatmul_cpu_ikj=matmul_cpu_ikj_fast -Dmatmul_cpu_register_blocked_ikj=matmul_cpu_register_blocked_ikj_fast -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -ffast-math -o CMakeFiles/matmul_register_fast.dir/src/cpu/register_blocked_ikj.cpp.o -c <REPO>/src/cpu/register_blocked_ikj.cpp",
+  "file": "<REPO>/src/cpu/register_blocked_ikj.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/matmul_register_fast.dir/src/cpu/register_blocked_ikj.cpp.o"
+},
+{
+  "directory": "<REPO>/build-register",
+  "command": "/usr/bin/c++ -I<REPO>/tests -I<REPO>/include -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/register_experiment.dir/benchmarks/register_experiment.cpp.o -c <REPO>/benchmarks/register_experiment.cpp",
+  "file": "<REPO>/benchmarks/register_experiment.cpp",
+  "output": "<REPO>/build-register/CMakeFiles/register_experiment.dir/benchmarks/register_experiment.cpp.o"
+}
+]

@@ -8,7 +8,7 @@
 
 严格 double 累加 reference、float `ijk`、`ikj`、`transpose_b`、严格转置 B 内核、正确性测试、CPU 基准测试、隔离 fast-math 实验及数值比较工具。
 
-Blocked/Tiled Matmul 为 **planned（计划中）**；CUDA 与运行时调度属于后续工作。
+严格语义的 CPU 分块 `ikj` 已实现，支持独立配置三个块尺寸。CUDA 与运行时调度属于后续工作。
 
 ## 构建与运行
 
@@ -20,6 +20,7 @@ cmake --build build -j
 ctest --test-dir build --output-on-failure
 ./build/cpu_benchmark ijk 256
 ./build/cpu_benchmark ikj 256
+./build/cpu_benchmark blocked-sweep 256 256 256
 ./build/cpu_benchmark transposed-kernel 256
 ./build/cpu_benchmark transpose-only 256
 ./build/cpu_benchmark transposed-e2e 256
@@ -39,11 +40,15 @@ native fast-math 机制实验使用 `-march=native -ffast-math`，性能数值�
 
 fast-math 默认关闭，仅供实验。未来运行时必须由显式 numerical policy 允许重结合，不能仅凭矩阵尺寸自动选择 fast kernel。
 
+CPU 分块实验中，单独缓存分块没有稳定收益。1024 方阵的严格寄存器分块（4×16 微块、128³ 外层块）耗时 88.315 毫秒，相对原始严格 `ikj`（129.510 毫秒）为 **1.466×**，相对严格缓存分块（136.114 毫秒）为 **1.541×**。同一微内核启用快速数学后未显示稳定的额外收益。
+
 ## 文档索引
 
 详细数据、编译选项、计时边界和局限保留于中文分析文档：
 
-- [Design / 设计](docs/design_intent_zh-CN.md)
-- [Methodology / 测量方法](docs/benchmark_methodology_zh-CN.md)
-- [CPU analysis / CPU 分析](docs/cpu_memory_access_analysis_zh-CN.md)
-- [Numerical semantics / 数值语义](docs/numerical_semantics_analysis_zh-CN.md)
+- [设计](docs/design_intent_zh-CN.md)
+- [测量方法](docs/benchmark_methodology_zh-CN.md)
+- [CPU 内存访问分析](docs/cpu_memory_access_analysis_zh-CN.md)
+- [数值语义](docs/numerical_semantics_analysis_zh-CN.md)
+- [CPU 缓存分块实验](docs/blocked_ikj_zh-CN.md)
+- [寄存器分块与快速数学编译实验](docs/register_fastmath_zh-CN.md)

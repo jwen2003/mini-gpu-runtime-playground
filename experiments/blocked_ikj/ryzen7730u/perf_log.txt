@@ -1,0 +1,329 @@
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444
+exit=0
+counter_iterations=444, checksum=-252.961
+334666888,,cycles:u,101302915,100.00,,
+1999701831,,instructions:u,101302915,100.00,,
+714550088,,L1-dcache-loads:u,101302915,100.00,,
+58782596,,L1-dcache-load-misses:u,101302915,100.00,,
+87565928,,cache-references:u,101302915,100.00,,
+975090,,cache-misses:u,101302915,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 8 8 8
+exit=0
+counter_iterations=444, checksum=-252.961
+1122396312,,cycles:u,308910069,100.00,,
+5009756740,,instructions:u,308910069,100.00,,
+1115406049,,L1-dcache-loads:u,308910069,100.00,,
+34492041,,L1-dcache-load-misses:u,308910069,100.00,,
+72668416,,cache-references:u,308910069,100.00,,
+22611628,,cache-misses:u,308910069,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 128 128 128
+exit=0
+counter_iterations=444, checksum=-252.961
+345836207,,cycles:u,103029967,100.00,,
+2036526165,,instructions:u,103029967,100.00,,
+722087545,,L1-dcache-loads:u,103029967,100.00,,
+58772186,,L1-dcache-load-misses:u,103029967,100.00,,
+84131307,,cache-references:u,103029967,100.00,,
+989697,,cache-misses:u,103029967,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444
+exit=0
+counter_iterations=444, checksum=-252.961
+404458500,,cycles:u,142812775,100.00,,
+1999701866,,instructions:u,142812775,100.00,,
+715105330,,L1-dcache-loads:u,142812775,100.00,,
+59040833,,L1-dcache-load-misses:u,142812775,100.00,,
+81380270,,cache-references:u,142812775,100.00,,
+1127256,,cache-misses:u,142812775,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 8 8 8
+exit=0
+counter_iterations=444, checksum=-252.961
+1090916767,,cycles:u,324320419,100.00,,
+5009756760,,instructions:u,324320419,100.00,,
+1115817753,,L1-dcache-loads:u,324320419,100.00,,
+34263963,,L1-dcache-load-misses:u,324320419,100.00,,
+68736323,,cache-references:u,324320419,100.00,,
+20129990,,cache-misses:u,324320419,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 128 128 128
+exit=0
+counter_iterations=444, checksum=-252.961
+350531028,,cycles:u,108918975,100.00,,
+2036526175,,instructions:u,108918975,100.00,,
+721898363,,L1-dcache-loads:u,108918975,100.00,,
+58861799,,L1-dcache-load-misses:u,108918975,100.00,,
+84227315,,cache-references:u,108918975,100.00,,
+1004799,,cache-misses:u,108918975,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444
+exit=0
+counter_iterations=444, checksum=-252.961
+331878858,,cycles:u,101968892,100.00,,
+1999701801,,instructions:u,101968892,100.00,,
+714454917,,L1-dcache-loads:u,101968892,100.00,,
+58698236,,L1-dcache-load-misses:u,101968892,100.00,,
+91534912,,cache-references:u,101968892,100.00,,
+973118,,cache-misses:u,101968892,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 8 8 8
+exit=0
+counter_iterations=444, checksum=-252.961
+1083817439,,cycles:u,319420710,100.00,,
+5009756781,,instructions:u,319420710,100.00,,
+1115210157,,L1-dcache-loads:u,319420710,100.00,,
+34138580,,L1-dcache-load-misses:u,319420710,100.00,,
+71416381,,cache-references:u,319420710,100.00,,
+21941868,,cache-misses:u,319420710,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 128 128 128 444 128 128 128
+exit=0
+counter_iterations=444, checksum=-252.961
+352258613,,cycles:u,113166641,100.00,,
+2036526201,,instructions:u,113166641,100.00,,
+722289287,,L1-dcache-loads:u,113166641,100.00,,
+58963789,,L1-dcache-load-misses:u,113166641,100.00,,
+76761138,,cache-references:u,113166641,100.00,,
+1015463,,cache-misses:u,113166641,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7
+exit=0
+counter_iterations=7, checksum=4819.17
+391359062,,cycles:u,123246479,100.00,,
+1977289353,,instructions:u,123246479,100.00,,
+860869344,,L1-dcache-loads:u,123246479,100.00,,
+59446024,,L1-dcache-load-misses:u,123246479,100.00,,
+120343866,,cache-references:u,123246479,100.00,,
+1476741,,cache-misses:u,123246479,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 8 8 8
+exit=0
+counter_iterations=7, checksum=4819.17
+1154431464,,cycles:u,334425700,100.00,,
+5097781501,,instructions:u,334425700,100.00,,
+1227312133,,L1-dcache-loads:u,334425700,100.00,,
+45672559,,L1-dcache-load-misses:u,334425700,100.00,,
+109880977,,cache-references:u,334425700,100.00,,
+42298598,,cache-misses:u,334425700,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 128 128 128
+exit=0
+counter_iterations=7, checksum=4819.17
+390692098,,cycles:u,105509011,100.00,,
+2112218472,,instructions:u,105509011,100.00,,
+871256254,,L1-dcache-loads:u,105509011,100.00,,
+74326723,,L1-dcache-load-misses:u,105509011,100.00,,
+142448978,,cache-references:u,105509011,100.00,,
+13793238,,cache-misses:u,105509011,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 256 256 256
+exit=0
+counter_iterations=7, checksum=4819.17
+457584828,,cycles:u,137055997,100.00,,
+2026960125,,instructions:u,137055997,100.00,,
+864942317,,L1-dcache-loads:u,137055997,100.00,,
+71859389,,L1-dcache-load-misses:u,137055997,100.00,,
+163646585,,cache-references:u,137055997,100.00,,
+30762513,,cache-misses:u,137055997,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7
+exit=0
+counter_iterations=7, checksum=4819.17
+391152029,,cycles:u,119318029,100.00,,
+1977289351,,instructions:u,119318029,100.00,,
+861388612,,L1-dcache-loads:u,119318029,100.00,,
+59399030,,L1-dcache-load-misses:u,119318029,100.00,,
+120390226,,cache-references:u,119318029,100.00,,
+1487206,,cache-misses:u,119318029,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 8 8 8
+exit=0
+counter_iterations=7, checksum=4819.17
+1159732447,,cycles:u,332001693,100.00,,
+5097781483,,instructions:u,332001693,100.00,,
+1227436652,,L1-dcache-loads:u,332001693,100.00,,
+45845046,,L1-dcache-load-misses:u,332001693,100.00,,
+108435258,,cache-references:u,332001693,100.00,,
+40910172,,cache-misses:u,332001693,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 128 128 128
+exit=0
+counter_iterations=7, checksum=4819.17
+412328157,,cycles:u,121314608,100.00,,
+2112218492,,instructions:u,121314608,100.00,,
+871668673,,L1-dcache-loads:u,121314608,100.00,,
+74764749,,L1-dcache-load-misses:u,121314608,100.00,,
+151331189,,cache-references:u,121314608,100.00,,
+18139722,,cache-misses:u,121314608,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 256 256 256
+exit=0
+counter_iterations=7, checksum=4819.17
+434345973,,cycles:u,121817594,100.00,,
+2026960099,,instructions:u,121817594,100.00,,
+865708569,,L1-dcache-loads:u,121817594,100.00,,
+70649025,,L1-dcache-load-misses:u,121817594,100.00,,
+164889946,,cache-references:u,121817594,100.00,,
+30462025,,cache-misses:u,121817594,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7
+exit=0
+counter_iterations=7, checksum=4819.17
+387657466,,cycles:u,110786535,100.00,,
+1977289339,,instructions:u,110786535,100.00,,
+861246070,,L1-dcache-loads:u,110786535,100.00,,
+59368992,,L1-dcache-load-misses:u,110786535,100.00,,
+120341545,,cache-references:u,110786535,100.00,,
+1483044,,cache-misses:u,110786535,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 8 8 8
+exit=0
+counter_iterations=7, checksum=4819.17
+1165832767,,cycles:u,344136539,100.00,,
+5097781479,,instructions:u,344136539,100.00,,
+1227440041,,L1-dcache-loads:u,344136539,100.00,,
+45812554,,L1-dcache-load-misses:u,344136539,100.00,,
+109068659,,cache-references:u,344136539,100.00,,
+41372445,,cache-misses:u,344136539,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 128 128 128
+exit=0
+counter_iterations=7, checksum=4819.17
+401467900,,cycles:u,111207845,100.00,,
+2112218485,,instructions:u,111207845,100.00,,
+871259429,,L1-dcache-loads:u,111207845,100.00,,
+74299597,,L1-dcache-load-misses:u,111207845,100.00,,
+150595346,,cache-references:u,111207845,100.00,,
+17148071,,cache-misses:u,111207845,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 511 511 511 7 256 256 256
+exit=0
+counter_iterations=7, checksum=4819.17
+444748880,,cycles:u,129312464,100.00,,
+2026960140,,instructions:u,129312464,100.00,,
+864888076,,L1-dcache-loads:u,129312464,100.00,,
+71246745,,L1-dcache-load-misses:u,129312464,100.00,,
+167260851,,cache-references:u,129312464,100.00,,
+31950095,,cache-misses:u,129312464,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5
+exit=0
+counter_iterations=5, checksum=7033.73
+1958024100,,cycles:u,591840527,100.00,,
+10955989776,,instructions:u,591840527,100.00,,
+4075695377,,L1-dcache-loads:u,591840527,100.00,,
+342950733,,L1-dcache-load-misses:u,591840527,100.00,,
+691609065,,cache-references:u,591840527,100.00,,
+7997687,,cache-misses:u,591840527,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 8 8 8
+exit=0
+counter_iterations=5, checksum=7033.73
+10836519994,,cycles:u,2932583670,100.00,,
+28952915560,,instructions:u,2932583670,100.00,,
+6383294911,,L1-dcache-loads:u,2932583670,100.00,,
+993888422,,L1-dcache-load-misses:u,2932583670,100.00,,
+1621436219,,cache-references:u,2932583670,100.00,,
+515347992,,cache-misses:u,2932583670,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 128 128 128
+exit=0
+counter_iterations=5, checksum=7033.73
+2138619087,,cycles:u,617164483,100.00,,
+11835162683,,instructions:u,617164483,100.00,,
+4104576320,,L1-dcache-loads:u,617164483,100.00,,
+454649205,,L1-dcache-load-misses:u,617164483,100.00,,
+863996116,,cache-references:u,617164483,100.00,,
+64377180,,cache-misses:u,617164483,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 256 256 256
+exit=0
+counter_iterations=5, checksum=7033.73
+2530447102,,cycles:u,756559563,100.00,,
+11346088772,,instructions:u,756559563,100.00,,
+4111828972,,L1-dcache-loads:u,756559563,100.00,,
+423368734,,L1-dcache-load-misses:u,756559563,100.00,,
+1099028880,,cache-references:u,756559563,100.00,,
+181924717,,cache-misses:u,756559563,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5
+exit=0
+counter_iterations=5, checksum=7033.73
+1944406447,,cycles:u,588148588,100.00,,
+10955989766,,instructions:u,588148588,100.00,,
+4074840093,,L1-dcache-loads:u,588148588,100.00,,
+342739609,,L1-dcache-load-misses:u,588148588,100.00,,
+691238667,,cache-references:u,588148588,100.00,,
+7812483,,cache-misses:u,588148588,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 8 8 8
+exit=0
+counter_iterations=5, checksum=7033.73
+10771148245,,cycles:u,2890376795,100.00,,
+28952915516,,instructions:u,2890376795,100.00,,
+6379206436,,L1-dcache-loads:u,2890376795,100.00,,
+988059302,,L1-dcache-load-misses:u,2890376795,100.00,,
+1612284014,,cache-references:u,2890376795,100.00,,
+511531711,,cache-misses:u,2890376795,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 128 128 128
+exit=0
+counter_iterations=5, checksum=7033.73
+2150426022,,cycles:u,628382709,100.00,,
+11835162675,,instructions:u,628382709,100.00,,
+4105904627,,L1-dcache-loads:u,628382709,100.00,,
+457067284,,L1-dcache-load-misses:u,628382709,100.00,,
+855536196,,cache-references:u,628382709,100.00,,
+60948802,,cache-misses:u,628382709,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 256 256 256
+exit=0
+counter_iterations=5, checksum=7033.73
+2478611345,,cycles:u,689801162,100.00,,
+11346088637,,instructions:u,689801162,100.00,,
+4112573786,,L1-dcache-loads:u,689801162,100.00,,
+420834027,,L1-dcache-load-misses:u,689801162,100.00,,
+1082891154,,cache-references:u,689801162,100.00,,
+174430447,,cache-misses:u,689801162,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5
+exit=0
+counter_iterations=5, checksum=7033.73
+1959303678,,cycles:u,600750867,100.00,,
+10955989792,,instructions:u,600750867,100.00,,
+4076772354,,L1-dcache-loads:u,600750867,100.00,,
+343260608,,L1-dcache-load-misses:u,600750867,100.00,,
+692201247,,cache-references:u,600750867,100.00,,
+8593885,,cache-misses:u,600750867,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 8 8 8
+exit=0
+counter_iterations=5, checksum=7033.73
+10794830989,,cycles:u,2894909487,100.00,,
+28952915486,,instructions:u,2894909487,100.00,,
+6383012143,,L1-dcache-loads:u,2894909487,100.00,,
+993781909,,L1-dcache-load-misses:u,2894909487,100.00,,
+1617856922,,cache-references:u,2894909487,100.00,,
+512021423,,cache-misses:u,2894909487,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 128 128 128
+exit=0
+counter_iterations=5, checksum=7033.73
+2142437627,,cycles:u,597312212,100.00,,
+11835162645,,instructions:u,597312212,100.00,,
+4106810661,,L1-dcache-loads:u,597312212,100.00,,
+457975811,,L1-dcache-load-misses:u,597312212,100.00,,
+870070124,,cache-references:u,597312212,100.00,,
+65671709,,cache-misses:u,597312212,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-blocked/cpu_benchmark blocked-counter 1024 1024 1024 5 256 256 256
+exit=0
+counter_iterations=5, checksum=7033.73
+2511333489,,cycles:u,721305250,100.00,,
+11346088688,,instructions:u,721305250,100.00,,
+4111456649,,L1-dcache-loads:u,721305250,100.00,,
+422730154,,L1-dcache-load-misses:u,721305250,100.00,,
+1104045912,,cache-references:u,721305250,100.00,,
+180900664,,cache-misses:u,721305250,100.00,,

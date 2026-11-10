@@ -199,4 +199,4 @@ Cache events barely change while cycles fall about 89%, attributing the gain to 
 
 Original ijk has strided B access and an N=256 cache conflict. Transposition creates contiguous dot products and removes the conflict, but strict order retains a serial scalar reduction. Reassociation enables packed accumulation and sharply reduces cycles while introducing numerical risk.
 
-See [numerical semantics](numerical_semantics_analysis_en.md) for counterexamples. Cache blocking and a block-size sweep are the planned next CPU stage; optimizing the current roughly 0.126 ms naive transpose is not the priority.
+See [numerical semantics](numerical_semantics_analysis_en.md) for counterexamples. The [CPU cache blocking report](blocked_ikj_en.md) records the follow-up block-size sweep. The naive transpose was measured at roughly 0.126 ms.

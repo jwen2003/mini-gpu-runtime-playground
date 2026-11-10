@@ -128,6 +128,10 @@ C = A × B
 
 默认实现均接入 correctness test。预转置版本保持相同的输出和异常语义，但其第二个输入是 BT，因此不能与接收原始 B 的实现混为同一输入契约。
 
+### 7.6 `matmul_cpu_blocked_ikj`
+
+按 ii、jj 顺序遍历输出块，按递增的 kk 顺序遍历归约块。块内按 i、k、j 顺序计算，BM、BN、BK 可独立配置，尾块按边界截断。每个输出元素保持原始 ikj 的 FP32 累加顺序。
+
 ## 8. 性能研究问题
 
 项目研究以下问题：
@@ -140,7 +144,7 @@ C = A × B
 6. kernel-only 与包含内存传输的端到端测量为什么可能得出不同结论？
 7. Runtime 的 CPU/GPU 与 Kernel 选择规则能否由实测数据产生？
 
-前三个问题及第四个问题中的显式转置 B 已完成第一轮实验验证；cache blocking 尚未实现（planned）。相关证据，详见 `cpu_memory_access_analysis_zh-CN.md` 与 `numerical_semantics_analysis_zh-CN.md`。其余问题仍待后续实现和测量。
+前四个问题已有第一轮实验依据，包含[缓存分块实验](blocked_ikj_zh-CN.md)。其他证据见 `cpu_memory_access_analysis_zh-CN.md` 与 `numerical_semantics_analysis_zh-CN.md`。其余问题仍待后续实现和测量。
 
 ## 9. 数值策略
 

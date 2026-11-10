@@ -8,7 +8,7 @@ A reproducible FP32 row-major matrix multiplication playground studying memory a
 
 Implemented: strict double-accumulating reference, float `ijk`, `ikj`, `transpose_b`, strict transposed-B kernel, correctness tests, CPU benchmark, isolated fast-math experiment, and numerical comparison tool.
 
-Blocked/Tiled Matmul is **planned**. CUDA and runtime dispatch are future work.
+Strict CPU blocked `ikj` supports independent block dimensions. CUDA and runtime dispatch are future work.
 
 ## Build and run
 
@@ -20,6 +20,7 @@ cmake --build build -j
 ctest --test-dir build --output-on-failure
 ./build/cpu_benchmark ijk 256
 ./build/cpu_benchmark ikj 256
+./build/cpu_benchmark blocked-sweep 256 256 256
 ./build/cpu_benchmark transposed-kernel 256
 ./build/cpu_benchmark transpose-only 256
 ./build/cpu_benchmark transposed-e2e 256
@@ -39,11 +40,15 @@ Random, positive, and dynamic-range cases report absolute error, relative error,
 
 Fast-math is experimental and disabled by default. A future runtime must require an explicit numerical policy allowing reassociation; matrix size alone cannot authorize a fast kernel.
 
+In the CPU blocking experiments, cache blocking alone gave no stable gain. For the 1024 square case, strict register blocking (4×16 microtile, 128³ outer tile) ran in 88.315 ms, **1.466×** versus original strict `ikj` (129.510 ms) and **1.541×** versus strict cache blocking (136.114 ms). Fast-math gave no stable additional gain for the same microkernel.
+
 ## Documentation
 
 Detailed evidence, options, timing boundaries, and limitations are available in English and Chinese:
 
-- [Design / 设计](docs/design_intent_en.md)
-- [Methodology / 测量方法](docs/benchmark_methodology_en.md)
-- [CPU analysis / CPU 分析](docs/cpu_memory_access_analysis_en.md)
-- [Numerical semantics / 数值语义](docs/numerical_semantics_analysis_en.md)
+- [Design](docs/design_intent_en.md)
+- [Benchmark methodology](docs/benchmark_methodology_en.md)
+- [CPU memory access](docs/cpu_memory_access_analysis_en.md)
+- [Numerical semantics](docs/numerical_semantics_analysis_en.md)
+- [CPU cache blocking experiment](docs/blocked_ikj_en.md)
+- [Register blocking and fast-math experiment](docs/register_fastmath_en.md)

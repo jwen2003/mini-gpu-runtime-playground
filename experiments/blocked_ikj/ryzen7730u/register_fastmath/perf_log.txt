@@ -1,0 +1,929 @@
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u -- sleep 0.02
+exit=0
+692364,,ls_dispatch.ld_dispatch:u,4695762,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.store_dispatch:u -- sleep 0.02
+exit=0
+344444,,ls_dispatch.store_dispatch:u,2993367,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e stalled-cycles-frontend:u -- sleep 0.02
+exit=0
+821870,,stalled-cycles-frontend:u,3035708,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1250069082,,cycles:u,398050105,100.00,,
+7463520897,,instructions:u,398050105,100.00,,
+2681781119,,L1-dcache-loads:u,398050105,100.00,,
+217417839,,L1-dcache-load-misses:u,398050105,100.00,,
+309417227,,cache-references:u,398050105,100.00,,
+3614478,,cache-misses:u,398050105,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1834290168,,ls_dispatch.ld_dispatch:u,375875073,100.00,,
+866501291,,ls_dispatch.store_dispatch:u,375875073,100.00,,
+8848520,,stalled-cycles-frontend:u,375875073,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+720798189,,cycles:u,218447440,100.00,,
+3586713168,,instructions:u,218447440,100.00,,
+969170388,,L1-dcache-loads:u,218447440,100.00,,
+74374353,,L1-dcache-load-misses:u,218447440,100.00,,
+149503383,,cache-references:u,218447440,100.00,,
+30424207,,cache-misses:u,218447440,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+939873560,,ls_dispatch.ld_dispatch:u,212962209,100.00,,
+616475807,,ls_dispatch.store_dispatch:u,212962209,100.00,,
+3653917,,stalled-cycles-frontend:u,212962209,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1228004016,,cycles:u,361071583,100.00,,
+7516669208,,instructions:u,361071583,100.00,,
+2666594288,,L1-dcache-loads:u,361071583,100.00,,
+217870736,,L1-dcache-load-misses:u,361071583,100.00,,
+303373253,,cache-references:u,361071583,100.00,,
+3698748,,cache-misses:u,361071583,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1806369658,,ls_dispatch.ld_dispatch:u,378836530,100.00,,
+866057359,,ls_dispatch.store_dispatch:u,378836530,100.00,,
+6668209,,stalled-cycles-frontend:u,378836530,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+742542857,,cycles:u,220267869,100.00,,
+3586529016,,instructions:u,220267869,100.00,,
+968026810,,L1-dcache-loads:u,220267869,100.00,,
+78207493,,L1-dcache-load-misses:u,220267869,100.00,,
+167375795,,cache-references:u,220267869,100.00,,
+41078247,,cache-misses:u,220267869,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+938314687,,ls_dispatch.ld_dispatch:u,213961997,100.00,,
+615564474,,ls_dispatch.store_dispatch:u,213961997,100.00,,
+3174671,,stalled-cycles-frontend:u,213961997,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+736437762,,cycles:u,231756206,100.00,,
+3449117954,,instructions:u,231756206,100.00,,
+791445155,,L1-dcache-loads:u,231756206,100.00,,
+166505001,,L1-dcache-load-misses:u,231756206,100.00,,
+356413608,,cache-references:u,231756206,100.00,,
+124466018,,cache-misses:u,231756206,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+778534557,,ls_dispatch.ld_dispatch:u,238315810,100.00,,
+344181198,,ls_dispatch.store_dispatch:u,238315810,100.00,,
+3928732,,stalled-cycles-frontend:u,238315810,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+717654724,,cycles:u,228090351,100.00,,
+3449225001,,instructions:u,228090351,100.00,,
+791525607,,L1-dcache-loads:u,228090351,100.00,,
+149019846,,L1-dcache-load-misses:u,228090351,100.00,,
+381357115,,cache-references:u,228090351,100.00,,
+158363666,,cache-misses:u,228090351,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+778711625,,ls_dispatch.ld_dispatch:u,226074752,100.00,,
+344288187,,ls_dispatch.store_dispatch:u,226074752,100.00,,
+3598190,,stalled-cycles-frontend:u,226074752,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1266693495,,cycles:u,396295195,100.00,,
+7463520905,,instructions:u,396295195,100.00,,
+2688338782,,L1-dcache-loads:u,396295195,100.00,,
+218024809,,L1-dcache-load-misses:u,396295195,100.00,,
+279550761,,cache-references:u,396295195,100.00,,
+3652584,,cache-misses:u,396295195,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1834500664,,ls_dispatch.ld_dispatch:u,400094448,100.00,,
+866587827,,ls_dispatch.store_dispatch:u,400094448,100.00,,
+8640372,,stalled-cycles-frontend:u,400094448,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+719430988,,cycles:u,217628745,100.00,,
+3586713261,,instructions:u,217628745,100.00,,
+966667132,,L1-dcache-loads:u,217628745,100.00,,
+74403110,,L1-dcache-load-misses:u,217628745,100.00,,
+149573574,,cache-references:u,217628745,100.00,,
+30341810,,cache-misses:u,217628745,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+938711604,,ls_dispatch.ld_dispatch:u,218759103,100.00,,
+615766864,,ls_dispatch.store_dispatch:u,218759103,100.00,,
+3532990,,stalled-cycles-frontend:u,218759103,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1245978033,,cycles:u,384922301,100.00,,
+7516669394,,instructions:u,384922301,100.00,,
+2666953714,,L1-dcache-loads:u,384922301,100.00,,
+218145802,,L1-dcache-load-misses:u,384922301,100.00,,
+291494604,,cache-references:u,384922301,100.00,,
+3601542,,cache-misses:u,384922301,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1806306604,,ls_dispatch.ld_dispatch:u,367870744,100.00,,
+865988193,,ls_dispatch.store_dispatch:u,367870744,100.00,,
+5277406,,stalled-cycles-frontend:u,367870744,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+719466960,,cycles:u,214132831,100.00,,
+3586529046,,instructions:u,214132831,100.00,,
+963915729,,L1-dcache-loads:u,214132831,100.00,,
+75760110,,L1-dcache-load-misses:u,214132831,100.00,,
+166759560,,cache-references:u,214132831,100.00,,
+41334629,,cache-misses:u,214132831,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+938048853,,ls_dispatch.ld_dispatch:u,223239535,100.00,,
+615343124,,ls_dispatch.store_dispatch:u,223239535,100.00,,
+2959171,,stalled-cycles-frontend:u,223239535,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+717387178,,cycles:u,220735031,100.00,,
+3449117949,,instructions:u,220735031,100.00,,
+790942734,,L1-dcache-loads:u,220735031,100.00,,
+159738547,,L1-dcache-load-misses:u,220735031,100.00,,
+363806860,,cache-references:u,220735031,100.00,,
+136048499,,cache-misses:u,220735031,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+778728077,,ls_dispatch.ld_dispatch:u,211243713,100.00,,
+344285778,,ls_dispatch.store_dispatch:u,211243713,100.00,,
+3400056,,stalled-cycles-frontend:u,211243713,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+740661044,,cycles:u,252579762,100.00,,
+3449225008,,instructions:u,252579762,100.00,,
+791558231,,L1-dcache-loads:u,252579762,100.00,,
+156901482,,L1-dcache-load-misses:u,252579762,100.00,,
+360498097,,cache-references:u,252579762,100.00,,
+138003516,,cache-misses:u,252579762,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+778286337,,ls_dispatch.ld_dispatch:u,314452323,100.00,,
+343953424,,ls_dispatch.store_dispatch:u,314452323,100.00,,
+5949686,,stalled-cycles-frontend:u,314452323,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1266407397,,cycles:u,385593216,100.00,,
+7463520894,,instructions:u,385593216,100.00,,
+2682040739,,L1-dcache-loads:u,385593216,100.00,,
+217516529,,L1-dcache-load-misses:u,385593216,100.00,,
+308840375,,cache-references:u,385593216,100.00,,
+3634833,,cache-misses:u,385593216,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1834667780,,ls_dispatch.ld_dispatch:u,424911391,100.00,,
+866674220,,ls_dispatch.store_dispatch:u,424911391,100.00,,
+12615765,,stalled-cycles-frontend:u,424911391,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+733738774,,cycles:u,253975564,100.00,,
+3586713225,,instructions:u,253975564,100.00,,
+979374956,,L1-dcache-loads:u,253975564,100.00,,
+74664505,,L1-dcache-load-misses:u,253975564,100.00,,
+149938731,,cache-references:u,253975564,100.00,,
+30921855,,cache-misses:u,253975564,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+938262651,,ls_dispatch.ld_dispatch:u,253256377,100.00,,
+615143727,,ls_dispatch.store_dispatch:u,253256377,100.00,,
+4545681,,stalled-cycles-frontend:u,253256377,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1271130344,,cycles:u,413266541,100.00,,
+7516669261,,instructions:u,413266541,100.00,,
+2665271869,,L1-dcache-loads:u,413266541,100.00,,
+217338118,,L1-dcache-load-misses:u,413266541,100.00,,
+335281540,,cache-references:u,413266541,100.00,,
+3568916,,cache-misses:u,413266541,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_cache_blocked 128 none
+exit=0
+calls=1641, checksum=-252.961387407
+1806248349,,ls_dispatch.ld_dispatch:u,432455235,100.00,,
+865966621,,ls_dispatch.store_dispatch:u,432455235,100.00,,
+9552505,,stalled-cycles-frontend:u,432455235,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+731627277,,cycles:u,245233714,100.00,,
+3586529048,,instructions:u,245233714,100.00,,
+974715276,,L1-dcache-loads:u,245233714,100.00,,
+76777292,,L1-dcache-load-misses:u,245233714,100.00,,
+163659492,,cache-references:u,245233714,100.00,,
+41801043,,cache-misses:u,245233714,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 8x16
+exit=0
+calls=1641, checksum=-252.961387407
+938918740,,ls_dispatch.ld_dispatch:u,252538003,100.00,,
+616127192,,ls_dispatch.store_dispatch:u,252538003,100.00,,
+4739277,,stalled-cycles-frontend:u,252538003,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+774832009,,cycles:u,280860665,100.00,,
+3449117993,,instructions:u,280860665,100.00,,
+791317078,,L1-dcache-loads:u,280860665,100.00,,
+175389472,,L1-dcache-load-misses:u,280860665,100.00,,
+317076568,,cache-references:u,280860665,100.00,,
+88201282,,cache-misses:u,280860665,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 strict_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+779353618,,ls_dispatch.ld_dispatch:u,236114166,100.00,,
+344610824,,ls_dispatch.store_dispatch:u,236114166,100.00,,
+4032638,,stalled-cycles-frontend:u,236114166,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+830530809,,cycles:u,333881806,100.00,,
+3449225181,,instructions:u,333881806,100.00,,
+792671022,,L1-dcache-loads:u,333881806,100.00,,
+166683237,,L1-dcache-load-misses:u,333881806,100.00,,
+297181213,,cache-references:u,333881806,100.00,,
+83804056,,cache-misses:u,333881806,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 128 1641 fast_register_blocked 128 4x16
+exit=0
+calls=1641, checksum=-252.961387407
+778677055,,ls_dispatch.ld_dispatch:u,279363641,100.00,,
+344179801,,ls_dispatch.store_dispatch:u,279363641,100.00,,
+5979852,,stalled-cycles-frontend:u,279363641,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1136557175,,cycles:u,351540627,100.00,,
+6134960284,,instructions:u,351540627,100.00,,
+2152451954,,L1-dcache-loads:u,351540627,100.00,,
+247335200,,L1-dcache-load-misses:u,351540627,100.00,,
+486028291,,cache-references:u,351540627,100.00,,
+68034099,,cache-misses:u,351540627,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1503613958,,ls_dispatch.ld_dispatch:u,340658121,100.00,,
+708974158,,ls_dispatch.store_dispatch:u,340658121,100.00,,
+6602542,,stalled-cycles-frontend:u,340658121,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+654016925,,cycles:u,223398257,100.00,,
+2959842104,,instructions:u,223398257,100.00,,
+795459069,,L1-dcache-loads:u,223398257,100.00,,
+62254733,,L1-dcache-load-misses:u,223398257,100.00,,
+129557651,,cache-references:u,223398257,100.00,,
+25169996,,cache-misses:u,223398257,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770527805,,ls_dispatch.ld_dispatch:u,190063009,100.00,,
+503700226,,ls_dispatch.store_dispatch:u,190063009,100.00,,
+4693523,,stalled-cycles-frontend:u,190063009,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1126115243,,cycles:u,362359734,100.00,,
+6178486413,,instructions:u,362359734,100.00,,
+2170054327,,L1-dcache-loads:u,362359734,100.00,,
+233804555,,L1-dcache-load-misses:u,362359734,100.00,,
+444875073,,cache-references:u,362359734,100.00,,
+40600906,,cache-misses:u,362359734,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1481051277,,ls_dispatch.ld_dispatch:u,369587486,100.00,,
+708668377,,ls_dispatch.store_dispatch:u,369587486,100.00,,
+13288898,,stalled-cycles-frontend:u,369587486,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+662615305,,cycles:u,228206833,100.00,,
+2959677156,,instructions:u,228206833,100.00,,
+801047140,,L1-dcache-loads:u,228206833,100.00,,
+68194245,,L1-dcache-load-misses:u,228206833,100.00,,
+148294072,,cache-references:u,228206833,100.00,,
+36446962,,cache-misses:u,228206833,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770241822,,ls_dispatch.ld_dispatch:u,240395090,100.00,,
+503659889,,ls_dispatch.store_dispatch:u,240395090,100.00,,
+5301474,,stalled-cycles-frontend:u,240395090,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+670456823,,cycles:u,211228865,100.00,,
+2847156663,,instructions:u,211228865,100.00,,
+648775825,,L1-dcache-loads:u,211228865,100.00,,
+107108815,,L1-dcache-load-misses:u,211228865,100.00,,
+290513406,,cache-references:u,211228865,100.00,,
+110942718,,cache-misses:u,211228865,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639464729,,ls_dispatch.ld_dispatch:u,225496182,100.00,,
+281382997,,ls_dispatch.store_dispatch:u,225496182,100.00,,
+5381301,,stalled-cycles-frontend:u,225496182,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+825751625,,cycles:u,339548381,100.00,,
+2847245828,,instructions:u,339548381,100.00,,
+649911095,,L1-dcache-loads:u,339548381,100.00,,
+102041260,,L1-dcache-load-misses:u,339548381,100.00,,
+219817990,,cache-references:u,339548381,100.00,,
+80495135,,cache-misses:u,339548381,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639364233,,ls_dispatch.ld_dispatch:u,249431190,100.00,,
+281305963,,ls_dispatch.store_dispatch:u,249431190,100.00,,
+6042008,,stalled-cycles-frontend:u,249431190,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1168591794,,cycles:u,384958827,100.00,,
+6134960320,,instructions:u,384958827,100.00,,
+2156631918,,L1-dcache-loads:u,384958827,100.00,,
+247774546,,L1-dcache-load-misses:u,384958827,100.00,,
+482116641,,cache-references:u,384958827,100.00,,
+65648060,,cache-misses:u,384958827,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1503727461,,ls_dispatch.ld_dispatch:u,376713496,100.00,,
+709025514,,ls_dispatch.store_dispatch:u,376713496,100.00,,
+6042709,,stalled-cycles-frontend:u,376713496,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+650757474,,cycles:u,206514037,100.00,,
+2959842074,,instructions:u,206514037,100.00,,
+793637089,,L1-dcache-loads:u,206514037,100.00,,
+62403805,,L1-dcache-load-misses:u,206514037,100.00,,
+130719170,,cache-references:u,206514037,100.00,,
+25962345,,cache-misses:u,206514037,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770594496,,ls_dispatch.ld_dispatch:u,235003206,100.00,,
+503743710,,ls_dispatch.store_dispatch:u,235003206,100.00,,
+5592415,,stalled-cycles-frontend:u,235003206,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1228298407,,cycles:u,470239004,100.00,,
+6178486551,,instructions:u,470239004,100.00,,
+2169381298,,L1-dcache-loads:u,470239004,100.00,,
+240097291,,L1-dcache-load-misses:u,470239004,100.00,,
+446009475,,cache-references:u,470239004,100.00,,
+49353516,,cache-misses:u,470239004,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1481766092,,ls_dispatch.ld_dispatch:u,427624342,100.00,,
+709011395,,ls_dispatch.store_dispatch:u,427624342,100.00,,
+16657049,,stalled-cycles-frontend:u,427624342,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+645309773,,cycles:u,201302786,100.00,,
+2959677078,,instructions:u,201302786,100.00,,
+794524951,,L1-dcache-loads:u,201302786,100.00,,
+68781086,,L1-dcache-load-misses:u,201302786,100.00,,
+149525074,,cache-references:u,201302786,100.00,,
+35976508,,cache-misses:u,201302786,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770371143,,ls_dispatch.ld_dispatch:u,203245907,100.00,,
+503783738,,ls_dispatch.store_dispatch:u,203245907,100.00,,
+4640638,,stalled-cycles-frontend:u,203245907,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+680959757,,cycles:u,233897220,100.00,,
+2847156709,,instructions:u,233897220,100.00,,
+648806079,,L1-dcache-loads:u,233897220,100.00,,
+103331048,,L1-dcache-load-misses:u,233897220,100.00,,
+258918502,,cache-references:u,233897220,100.00,,
+96047421,,cache-misses:u,233897220,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639163054,,ls_dispatch.ld_dispatch:u,322574582,100.00,,
+281117665,,ls_dispatch.store_dispatch:u,322574582,100.00,,
+7890371,,stalled-cycles-frontend:u,322574582,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+688440513,,cycles:u,239887206,100.00,,
+2847245691,,instructions:u,239887206,100.00,,
+648460341,,L1-dcache-loads:u,239887206,100.00,,
+102189259,,L1-dcache-load-misses:u,239887206,100.00,,
+248806279,,cache-references:u,239887206,100.00,,
+90737092,,cache-misses:u,239887206,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639557165,,ls_dispatch.ld_dispatch:u,224020549,100.00,,
+281441740,,ls_dispatch.store_dispatch:u,224020549,100.00,,
+5192903,,stalled-cycles-frontend:u,224020549,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1162006158,,cycles:u,395333563,100.00,,
+6134960381,,instructions:u,395333563,100.00,,
+2156764333,,L1-dcache-loads:u,395333563,100.00,,
+249214906,,L1-dcache-load-misses:u,395333563,100.00,,
+469357683,,cache-references:u,395333563,100.00,,
+60879705,,cache-misses:u,395333563,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1503662012,,ls_dispatch.ld_dispatch:u,362819899,100.00,,
+708993888,,ls_dispatch.store_dispatch:u,362819899,100.00,,
+5656590,,stalled-cycles-frontend:u,362819899,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+680982003,,cycles:u,241077797,100.00,,
+2959842103,,instructions:u,241077797,100.00,,
+803599222,,L1-dcache-loads:u,241077797,100.00,,
+62466239,,L1-dcache-load-misses:u,241077797,100.00,,
+128065335,,cache-references:u,241077797,100.00,,
+26873935,,cache-misses:u,241077797,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770386352,,ls_dispatch.ld_dispatch:u,218172508,100.00,,
+503603666,,ls_dispatch.store_dispatch:u,218172508,100.00,,
+5029463,,stalled-cycles-frontend:u,218172508,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1093685281,,cycles:u,363395090,100.00,,
+6178486411,,instructions:u,363395090,100.00,,
+2168068047,,L1-dcache-loads:u,363395090,100.00,,
+229625397,,L1-dcache-load-misses:u,363395090,100.00,,
+452352463,,cache-references:u,363395090,100.00,,
+43086009,,cache-misses:u,363395090,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_cache_blocked 128 none
+exit=0
+calls=21, checksum=-256.038194807
+1481546564,,ls_dispatch.ld_dispatch:u,377415168,100.00,,
+708915260,,ls_dispatch.store_dispatch:u,377415168,100.00,,
+9147748,,stalled-cycles-frontend:u,377415168,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+645612921,,cycles:u,207293866,100.00,,
+2959677103,,instructions:u,207293866,100.00,,
+795180844,,L1-dcache-loads:u,207293866,100.00,,
+68362663,,L1-dcache-load-misses:u,207293866,100.00,,
+148724754,,cache-references:u,207293866,100.00,,
+36637132,,cache-misses:u,207293866,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 8x16
+exit=0
+calls=21, checksum=-256.038194807
+770332706,,ls_dispatch.ld_dispatch:u,194021088,100.00,,
+503823610,,ls_dispatch.store_dispatch:u,194021088,100.00,,
+4303780,,stalled-cycles-frontend:u,194021088,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+641301458,,cycles:u,191559251,100.00,,
+2847156635,,instructions:u,191559251,100.00,,
+648471975,,L1-dcache-loads:u,191559251,100.00,,
+107651999,,L1-dcache-load-misses:u,191559251,100.00,,
+307607868,,cache-references:u,191559251,100.00,,
+120493977,,cache-misses:u,191559251,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 strict_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639406452,,ls_dispatch.ld_dispatch:u,187984887,100.00,,
+281369822,,ls_dispatch.store_dispatch:u,187984887,100.00,,
+4301055,,stalled-cycles-frontend:u,187984887,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+630101756,,cycles:u,190230518,100.00,,
+2847245663,,instructions:u,190230518,100.00,,
+648418909,,L1-dcache-loads:u,190230518,100.00,,
+102740549,,L1-dcache-load-misses:u,190230518,100.00,,
+269312729,,cache-references:u,190230518,100.00,,
+103184331,,cache-misses:u,190230518,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 512 21 fast_register_blocked 128 4x16
+exit=0
+calls=21, checksum=-256.038194807
+639375716,,ls_dispatch.ld_dispatch:u,190627346,100.00,,
+281358559,,ls_dispatch.store_dispatch:u,190627346,100.00,,
+4036537,,stalled-cycles-frontend:u,190627346,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2495427757,,cycles:u,879002716,100.00,,
+11739667602,,instructions:u,879002716,100.00,,
+4055888005,,L1-dcache-loads:u,879002716,100.00,,
+523046078,,L1-dcache-load-misses:u,879002716,100.00,,
+959105969,,cache-references:u,879002716,100.00,,
+133515350,,cache-misses:u,879002716,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2866322588,,ls_dispatch.ld_dispatch:u,843649415,100.00,,
+1352578886,,ls_dispatch.store_dispatch:u,843649415,100.00,,
+18343483,,stalled-cycles-frontend:u,843649415,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1422801492,,cycles:u,501914509,100.00,,
+5691830428,,instructions:u,501914509,100.00,,
+1539572851,,L1-dcache-loads:u,501914509,100.00,,
+150482120,,L1-dcache-load-misses:u,501914509,100.00,,
+279479021,,cache-references:u,501914509,100.00,,
+49414310,,cache-misses:u,501914509,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1469900650,,ls_dispatch.ld_dispatch:u,434088359,100.00,,
+961756940,,ls_dispatch.store_dispatch:u,434088359,100.00,,
+7951382,,stalled-cycles-frontend:u,434088359,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2168376369,,cycles:u,728816869,100.00,,
+11822573718,,instructions:u,728816869,100.00,,
+4102891041,,L1-dcache-loads:u,728816869,100.00,,
+452795344,,L1-dcache-load-misses:u,728816869,100.00,,
+846804271,,cache-references:u,728816869,100.00,,
+52005268,,cache-misses:u,728816869,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2823660478,,ls_dispatch.ld_dispatch:u,682582767,100.00,,
+1352240302,,ls_dispatch.store_dispatch:u,682582767,100.00,,
+18554381,,stalled-cycles-frontend:u,682582767,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1358213189,,cycles:u,423774381,100.00,,
+5691514154,,instructions:u,423774381,100.00,,
+1514786174,,L1-dcache-loads:u,423774381,100.00,,
+152323825,,L1-dcache-load-misses:u,423774381,100.00,,
+306955275,,cache-references:u,423774381,100.00,,
+65880457,,cache-misses:u,423774381,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1469832182,,ls_dispatch.ld_dispatch:u,483842943,100.00,,
+961968828,,ls_dispatch.store_dispatch:u,483842943,100.00,,
+10294000,,stalled-cycles-frontend:u,483842943,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1443406104,,cycles:u,490118856,100.00,,
+5477193185,,instructions:u,490118856,100.00,,
+1240364323,,L1-dcache-loads:u,490118856,100.00,,
+210009179,,L1-dcache-load-misses:u,490118856,100.00,,
+516476188,,cache-references:u,490118856,100.00,,
+178812772,,cache-misses:u,490118856,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220120288,,ls_dispatch.ld_dispatch:u,577828876,100.00,,
+537872571,,ls_dispatch.store_dispatch:u,577828876,100.00,,
+13748574,,stalled-cycles-frontend:u,577828876,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1457511620,,cycles:u,527750235,100.00,,
+5477362872,,instructions:u,527750235,100.00,,
+1240960331,,L1-dcache-loads:u,527750235,100.00,,
+205459694,,L1-dcache-load-misses:u,527750235,100.00,,
+513791617,,cache-references:u,527750235,100.00,,
+180112574,,cache-misses:u,527750235,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220298823,,ls_dispatch.ld_dispatch:u,527286775,100.00,,
+538103403,,ls_dispatch.store_dispatch:u,527286775,100.00,,
+10713332,,stalled-cycles-frontend:u,527286775,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2643198197,,cycles:u,1042434444,100.00,,
+11739668118,,instructions:u,1042434444,100.00,,
+4068976799,,L1-dcache-loads:u,1042434444,100.00,,
+524596996,,L1-dcache-load-misses:u,1042434444,100.00,,
+1005939713,,cache-references:u,1042434444,100.00,,
+163500014,,cache-misses:u,1042434444,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2866317945,,ls_dispatch.ld_dispatch:u,766245346,100.00,,
+1352569524,,ls_dispatch.store_dispatch:u,766245346,100.00,,
+12344348,,stalled-cycles-frontend:u,766245346,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1350342002,,cycles:u,406761217,100.00,,
+5691830235,,instructions:u,406761217,100.00,,
+1511146945,,L1-dcache-loads:u,406761217,100.00,,
+154720916,,L1-dcache-load-misses:u,406761217,100.00,,
+296080651,,cache-references:u,406761217,100.00,,
+51636133,,cache-misses:u,406761217,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1469945456,,ls_dispatch.ld_dispatch:u,431863991,100.00,,
+961760015,,ls_dispatch.store_dispatch:u,431863991,100.00,,
+7846984,,stalled-cycles-frontend:u,431863991,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2177840339,,cycles:u,707799459,100.00,,
+11822573645,,instructions:u,707799459,100.00,,
+4105318922,,L1-dcache-loads:u,707799459,100.00,,
+455029580,,L1-dcache-load-misses:u,707799459,100.00,,
+855755576,,cache-references:u,707799459,100.00,,
+53429635,,cache-misses:u,707799459,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2824421555,,ls_dispatch.ld_dispatch:u,814269813,100.00,,
+1352568867,,ls_dispatch.store_dispatch:u,814269813,100.00,,
+23185301,,stalled-cycles-frontend:u,814269813,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1368539542,,cycles:u,422902021,100.00,,
+5691514109,,instructions:u,422902021,100.00,,
+1517125576,,L1-dcache-loads:u,422902021,100.00,,
+152443249,,L1-dcache-load-misses:u,422902021,100.00,,
+307310808,,cache-references:u,422902021,100.00,,
+65971132,,cache-misses:u,422902021,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1469593873,,ls_dispatch.ld_dispatch:u,422990582,100.00,,
+961793113,,ls_dispatch.store_dispatch:u,422990582,100.00,,
+7791611,,stalled-cycles-frontend:u,422990582,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1400187445,,cycles:u,441965995,100.00,,
+5477193129,,instructions:u,441965995,100.00,,
+1240289389,,L1-dcache-loads:u,441965995,100.00,,
+209736711,,L1-dcache-load-misses:u,441965995,100.00,,
+542303121,,cache-references:u,441965995,100.00,,
+194108951,,cache-misses:u,441965995,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220290429,,ls_dispatch.ld_dispatch:u,468030086,100.00,,
+538124705,,ls_dispatch.store_dispatch:u,468030086,100.00,,
+10331090,,stalled-cycles-frontend:u,468030086,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1411726600,,cycles:u,464869908,100.00,,
+5477362514,,instructions:u,464869908,100.00,,
+1240352844,,L1-dcache-loads:u,464869908,100.00,,
+217754717,,L1-dcache-load-misses:u,464869908,100.00,,
+559702053,,cache-references:u,464869908,100.00,,
+198154530,,cache-misses:u,464869908,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220206007,,ls_dispatch.ld_dispatch:u,466836578,100.00,,
+538117704,,ls_dispatch.store_dispatch:u,466836578,100.00,,
+9625614,,stalled-cycles-frontend:u,466836578,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2393934507,,cycles:u,790090481,100.00,,
+11739667515,,instructions:u,790090481,100.00,,
+4056167335,,L1-dcache-loads:u,790090481,100.00,,
+511553827,,L1-dcache-load-misses:u,790090481,100.00,,
+964258783,,cache-references:u,790090481,100.00,,
+125297050,,cache-misses:u,790090481,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2867217904,,ls_dispatch.ld_dispatch:u,714002356,100.00,,
+1352998509,,ls_dispatch.store_dispatch:u,714002356,100.00,,
+10912472,,stalled-cycles-frontend:u,714002356,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1391733383,,cycles:u,450414865,100.00,,
+5691830310,,instructions:u,450414865,100.00,,
+1523230454,,L1-dcache-loads:u,450414865,100.00,,
+151881694,,L1-dcache-load-misses:u,450414865,100.00,,
+283725070,,cache-references:u,450414865,100.00,,
+49905226,,cache-misses:u,450414865,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1470087344,,ls_dispatch.ld_dispatch:u,559832752,100.00,,
+961774536,,ls_dispatch.store_dispatch:u,559832752,100.00,,
+12738603,,stalled-cycles-frontend:u,559832752,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2162078102,,cycles:u,704107333,100.00,,
+11822573547,,instructions:u,704107333,100.00,,
+4102725819,,L1-dcache-loads:u,704107333,100.00,,
+452226623,,L1-dcache-load-misses:u,704107333,100.00,,
+837450277,,cache-references:u,704107333,100.00,,
+48202883,,cache-misses:u,704107333,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_cache_blocked 128 none
+exit=0
+calls=5, checksum=7033.7328728
+2824301463,,ls_dispatch.ld_dispatch:u,706800422,100.00,,
+1352517791,,ls_dispatch.store_dispatch:u,706800422,100.00,,
+14325872,,stalled-cycles-frontend:u,706800422,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1360314687,,cycles:u,441556458,100.00,,
+5691514114,,instructions:u,441556458,100.00,,
+1512067535,,L1-dcache-loads:u,441556458,100.00,,
+152601458,,L1-dcache-load-misses:u,441556458,100.00,,
+307879578,,cache-references:u,441556458,100.00,,
+66917962,,cache-misses:u,441556458,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 8x16
+exit=0
+calls=5, checksum=7033.7328728
+1469623651,,ls_dispatch.ld_dispatch:u,424655404,100.00,,
+961878646,,ls_dispatch.store_dispatch:u,424655404,100.00,,
+7382590,,stalled-cycles-frontend:u,424655404,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1374891797,,cycles:u,416302605,100.00,,
+5477193097,,instructions:u,416302605,100.00,,
+1240226233,,L1-dcache-loads:u,416302605,100.00,,
+206442442,,L1-dcache-load-misses:u,416302605,100.00,,
+523522300,,cache-references:u,416302605,100.00,,
+181699146,,cache-misses:u,416302605,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 strict_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220454300,,ls_dispatch.ld_dispatch:u,427900521,100.00,,
+538253218,,ls_dispatch.store_dispatch:u,427900521,100.00,,
+8579239,,stalled-cycles-frontend:u,427900521,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1374318204,,cycles:u,397236860,100.00,,
+5477362341,,instructions:u,397236860,100.00,,
+1240439299,,L1-dcache-loads:u,397236860,100.00,,
+216537652,,L1-dcache-load-misses:u,397236860,100.00,,
+554366747,,cache-references:u,397236860,100.00,,
+196286185,,cache-misses:u,397236860,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-register/register_experiment counter 1024 5 fast_register_blocked 128 4x16
+exit=0
+calls=5, checksum=7033.7328728
+1220254999,,ls_dispatch.ld_dispatch:u,434627663,100.00,,
+538143231,,ls_dispatch.store_dispatch:u,434627663,100.00,,
+8677565,,stalled-cycles-frontend:u,434627663,100.00,,

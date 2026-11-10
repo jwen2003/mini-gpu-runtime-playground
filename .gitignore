@@ -1,5 +1,7 @@
 build/
 __pycache__/
 *.csv
+!experiments/blocked_ikj/*/*.csv
+!experiments/blocked_ikj/*/register_fastmath/*.csv
 *:Zone.Identifier
 build-*/

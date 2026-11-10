@@ -68,6 +68,10 @@ Built only with `MINI_GPU_BUILD_FAST_MATH_EXPERIMENT=ON`, in a separate static l
 
 Default implementations participate in correctness tests. The transposed version preserves output and exception semantics, but its second input is BT, so its input contract differs from kernels accepting B.
 
+### 7.6 matmul_cpu_blocked_ikj
+
+Traverses output tiles in ii, jj order and reduction panels in increasing kk order. Inside each block it uses i, k, j order, with independently configurable BM, BN, BK and clipped tails. Each output follows the original ikj FP32 accumulation order.
+
 ## 8. Performance questions
 
 1. How does loop order affect locality and vectorization?
@@ -78,7 +82,7 @@ Default implementations participate in correctness tests. The transposed version
 6. Why can kernel-only and end-to-end measurements including transfers differ?
 7. Can measured data determine runtime CPU/GPU and kernel selection?
 
-The first three questions and the transposition part of question four have initial experimental evidence. Cache blocking is planned and unimplemented. See [CPU analysis](cpu_memory_access_analysis_en.md) and [numerical semantics](numerical_semantics_analysis_en.md). Remaining questions require future implementation and measurement.
+The first four questions have initial experimental evidence, including the [CPU cache blocking experiment](blocked_ikj_en.md). See [CPU analysis](cpu_memory_access_analysis_en.md) and [numerical semantics](numerical_semantics_analysis_en.md). Remaining questions require future implementation and measurement.
 
 ## 9. Numerical policy
 
@@ -100,7 +104,7 @@ Handle or check NaN, positive and negative infinity, invalid pointers, zero dime
 
 ## 11. Evolution scope
 
-Keep FP32 row-major Matmul as the only operator. The implementation progression comprises the CPU reference, i-j-k, i-k-j, explicit B transposition, planned cache-blocked CPU code, a small set of CUDA kernels with explicit performance hypotheses, and minimal dispatch based on dimensions, data location, and measurements.
+Keep FP32 row-major Matmul as the only operator. The implementation progression comprises the CPU reference, i-j-k, i-k-j, explicit B transposition, cache-blocked CPU code, a small set of CUDA kernels with explicit performance hypotheses, and minimal dispatch based on dimensions, data location, and measurements.
 
 Each added implementation must document its target bottleneck, changed access or execution structure, additional costs, correctness checks, performance hypothesis, supporting or contradictory measurements, and applicable hardware/software environment.
 
