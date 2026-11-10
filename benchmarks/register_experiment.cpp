@@ -9,6 +9,7 @@
 #include <iostream>
 #include <random>
 #include <stdexcept>
+#include <string>
 #include <string_view>
 #include <vector>
 
@@ -34,6 +35,20 @@ struct Variant {
 };
 
 std::vector<Variant> variants() {
+#ifdef MINI_GPU_MICROTILE_SEARCH
+    constexpr auto* registers = "strict_register_blocked";
+    return {
+        {"strict_ikj", Kernel::ikj, false, 0, "none"},
+        {"strict_cache_blocked", Kernel::cache, false, 128, "none"},
+        {registers, Kernel::registers, false, 128, "2x8", RegisterTile::r2c8},
+        {registers, Kernel::registers, false, 128, "4x8", RegisterTile::r4c8},
+        {registers, Kernel::registers, false, 128, "3x16", RegisterTile::r3c16},
+        {registers, Kernel::registers, false, 128, "4x12", RegisterTile::r4c12},
+        {registers, Kernel::registers, false, 128, "6x8", RegisterTile::r6c8},
+        {registers, Kernel::registers, false, 128, "4x16", RegisterTile::r4c16},
+        {registers, Kernel::registers, false, 128, "8x16", RegisterTile::r8c16},
+    };
+#else
     std::vector<Variant> result;
     for (const bool fast : {false, true}) {
         result.push_back({fast ? "fast_ikj" : "strict_ikj", Kernel::ikj, fast, 0, "none"});
@@ -50,6 +65,7 @@ std::vector<Variant> variants() {
         }
     }
     return result;
+#endif
 }
 
 struct Matrices {
@@ -63,20 +79,32 @@ struct Matrices {
         const auto block = variant.outer;
         switch (variant.kernel) {
         case Kernel::ikj: {
+#ifdef MINI_GPU_MICROTILE_SEARCH
+            const auto kernel = mini_gpu::matmul_cpu_ikj;
+#else
             const auto kernel = variant.fast ? mini_gpu::matmul_cpu_ikj_fast
                                              : mini_gpu::matmul_cpu_ikj;
+#endif
             kernel(A.data(), B.data(), C.data(), M, N, K);
             break;
         }
         case Kernel::cache: {
+#ifdef MINI_GPU_MICROTILE_SEARCH
+            const auto kernel = mini_gpu::matmul_cpu_blocked_ikj;
+#else
             const auto kernel = variant.fast ? mini_gpu::matmul_cpu_blocked_ikj_fast
                                              : mini_gpu::matmul_cpu_blocked_ikj;
+#endif
             kernel(A.data(), B.data(), C.data(), M, N, K, block, block, block);
             break;
         }
         case Kernel::registers: {
+#ifdef MINI_GPU_MICROTILE_SEARCH
+            const auto kernel = mini_gpu::matmul_cpu_register_blocked_ikj;
+#else
             const auto kernel = variant.fast ? mini_gpu::matmul_cpu_register_blocked_ikj_fast
                                              : mini_gpu::matmul_cpu_register_blocked_ikj;
+#endif
             kernel(A.data(), B.data(), C.data(), M, N, K, block, block, block, variant.tile);
             break;
         }
@@ -152,10 +180,19 @@ bool numerics() {
                  "bitwise_ref,abs_ref,rel_ref,ulp_ref,tol_fail_ref,class_ref,zero_ref\n";
     std::mt19937 generator(20261110);
     bool passed = true;
-    for (const std::size_t n : {1, 31, 32, 33, 127, 128, 129, 255, 256, 257}) {
+#ifdef MINI_GPU_MICROTILE_SEARCH
+    constexpr std::size_t sizes[] = {
+        1, 7, 8, 9, 11, 12, 13, 15, 16, 17, 31, 32, 33, 127, 128, 129, 255, 256, 257
+    };
+    constexpr Shape rectangles[] = {{127, 257, 63}, {129, 255, 257}, {255, 257, 129}};
+#else
+    constexpr std::size_t sizes[] = {1, 31, 32, 33, 127, 128, 129, 255, 256, 257};
+    constexpr Shape rectangles[] = {{127, 257, 63}, {129, 255, 257}};
+#endif
+    for (const auto n : sizes) {
         passed &= verify_case("random", random_matrices({n, n, n}, generator), true);
     }
-    for (const auto shape : {Shape{127, 257, 63}, Shape{129, 255, 257}}) {
+    for (const auto shape : rectangles) {
         passed &= verify_case("random_rectangular", random_matrices(shape, generator), true);
     }
     mini_gpu::test::run_cancellation_cases(
@@ -192,26 +229,46 @@ std::size_t positive_size(std::string_view value) {
     return result;
 }
 
-void sweep(std::size_t n, std::size_t seed) {
+void sweep(Shape shape, std::size_t seed) {
+    const auto [m, n, k] = shape;
     std::mt19937 generator(20260825);
-    auto matrices = random_matrices({n, n, n}, generator);
+    auto matrices = random_matrices(shape, generator);
     const auto expected = matrices.reference();
     auto configurations = variants();
+#ifdef MINI_GPU_MICROTILE_SEARCH
+    const bool high_pressure_control = m == 1024 && n == 1024 && k == 1024;
+    configurations.erase(std::remove_if(configurations.begin(), configurations.end(),
+        [high_pressure_control](Variant variant) {
+            const std::string_view tile = variant.micro;
+            return tile == "2x8" || (tile == "8x16" && !high_pressure_control);
+        }), configurations.end());
+    matrices.run(configurations.front());
+    const auto strict = matrices.C;
+#endif
     for (const auto variant : configurations) {
         for (int i = 0; i < 3; ++i) {
             matrices.run(variant);
         }
         const auto metrics = mini_gpu::test::compare_outputs(matrices.C, expected);
+#ifdef MINI_GPU_MICROTILE_SEARCH
+        if (mini_gpu::test::compare_outputs(matrices.C, strict).bitwise_matches != strict.size()) {
+            throw std::runtime_error("sweep output differed from strict ikj");
+        }
+#endif
         if (!variant.fast && (metrics.tolerance_failures || metrics.classification_mismatches)) {
             throw std::runtime_error("strict sweep output failed reference verification");
         }
     }
 
     const auto calls = static_cast<std::size_t>(std::clamp(
-        32.0e6 / (2.0 * n * n * n), 1.0, 256.0
+        32.0e6 / (2.0 * m * n * k), 1.0, 256.0
     ));
     std::mt19937 order(seed);
+#ifdef MINI_GPU_MICROTILE_SEARCH
+    std::cout << "m,n,k,version,outer,micro,round,calls,elapsed_ns,ns_per_call\n";
+#else
     std::cout << "n,version,outer,micro,round,calls,elapsed_ns,ns_per_call\n";
+#endif
     for (int round = 1; round <= 9; ++round) {
         std::shuffle(configurations.begin(), configurations.end(), order);
         for (const auto variant : configurations) {
@@ -221,7 +278,12 @@ void sweep(std::size_t n, std::size_t seed) {
             }
             const auto duration = std::chrono::steady_clock::now() - start;
             const double ns = std::chrono::duration<double, std::nano>(duration).count();
-            std::cout << n << ',' << variant.name << ',' << variant.outer << ','
+#ifdef MINI_GPU_MICROTILE_SEARCH
+            std::cout << m << ',' << n << ',' << k << ',';
+#else
+            std::cout << n << ',';
+#endif
+            std::cout << variant.name << ',' << variant.outer << ','
                       << variant.micro << ',' << round << ',' << calls << ','
                       << ns << ',' << ns / calls << '\n';
         }
@@ -258,10 +320,19 @@ int main(int argc, char* argv[]) {
         if (argc == 2 && mode == "numerics") {
             return numerics() ? 0 : 1;
         }
-        if (argc == 4 && mode == "sweep") {
-            sweep(positive_size(argv[2]), positive_size(argv[3]));
+#ifdef MINI_GPU_MICROTILE_SEARCH
+        if (argc == 6 && mode == "sweep") {
+            sweep({positive_size(argv[2]), positive_size(argv[3]), positive_size(argv[4])},
+                  positive_size(argv[5]));
             return 0;
         }
+#else
+        if (argc == 4 && mode == "sweep") {
+            const auto n = positive_size(argv[2]);
+            sweep({n, n, n}, positive_size(argv[3]));
+            return 0;
+        }
+#endif
         if (argc == 7 && mode == "counter") {
             counter(positive_size(argv[2]), positive_size(argv[3]), argv[4], argv[5], argv[6]);
             return 0;
@@ -270,6 +341,10 @@ int main(int argc, char* argv[]) {
         std::cerr << error.what() << '\n';
         return 1;
     }
+#ifdef MINI_GPU_MICROTILE_SEARCH
+    std::cerr << "Usage: microtile_search numerics | sweep M N K seed | counter N calls version outer micro\n";
+#else
     std::cerr << "Usage: register_experiment numerics | sweep N seed | counter N calls version outer micro\n";
+#endif
     return 1;
 }

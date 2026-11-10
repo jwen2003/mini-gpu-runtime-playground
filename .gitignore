@@ -3,5 +3,6 @@ __pycache__/
 *.csv
 !experiments/blocked_ikj/*/*.csv
 !experiments/blocked_ikj/*/register_fastmath/*.csv
+!experiments/blocked_ikj/*/microtile_search/*.csv
 *:Zone.Identifier
 build-*/

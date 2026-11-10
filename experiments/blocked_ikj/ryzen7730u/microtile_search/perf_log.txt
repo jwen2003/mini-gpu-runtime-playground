@@ -1,0 +1,449 @@
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+914869504,,cycles:u,277422242,100.00,,
+3410564161,,instructions:u,277422242,100.00,,
+640431883,,L1-dcache-loads:u,277422242,100.00,,
+188695471,,L1-dcache-load-misses:u,277422242,100.00,,
+463911219,,cache-references:u,277422242,100.00,,
+152284887,,cache-misses:u,277422242,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+632937106,,ls_dispatch.ld_dispatch:u,277472016,100.00,,
+14320744,,ls_dispatch.store_dispatch:u,277472016,100.00,,
+7743284,,stalled-cycles-frontend:u,277472016,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+928709447,,cycles:u,288716041,100.00,,
+3275117252,,instructions:u,288716041,100.00,,
+677576917,,L1-dcache-loads:u,288716041,100.00,,
+153375818,,L1-dcache-load-misses:u,288716041,100.00,,
+376788657,,cache-references:u,288716041,100.00,,
+145873056,,cache-misses:u,288716041,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+667425448,,ls_dispatch.ld_dispatch:u,284440838,100.00,,
+161074310,,ls_dispatch.store_dispatch:u,284440838,100.00,,
+7199683,,stalled-cycles-frontend:u,284440838,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+1191401292,,cycles:u,363522253,100.00,,
+3885574707,,instructions:u,363522253,100.00,,
+769100076,,L1-dcache-loads:u,363522253,100.00,,
+155757641,,L1-dcache-load-misses:u,363522253,100.00,,
+368086016,,cache-references:u,363522253,100.00,,
+117125833,,cache-misses:u,363522253,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+757189342,,ls_dispatch.ld_dispatch:u,372996352,100.00,,
+130139484,,ls_dispatch.store_dispatch:u,372996352,100.00,,
+8697550,,stalled-cycles-frontend:u,372996352,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+869819507,,cycles:u,269814417,100.00,,
+3426102117,,instructions:u,269814417,100.00,,
+618743307,,L1-dcache-loads:u,269814417,100.00,,
+140859912,,L1-dcache-load-misses:u,269814417,100.00,,
+340398904,,cache-references:u,269814417,100.00,,
+120891929,,cache-misses:u,269814417,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+605385436,,ls_dispatch.ld_dispatch:u,289850491,100.00,,
+30842088,,ls_dispatch.store_dispatch:u,289850491,100.00,,
+8229972,,stalled-cycles-frontend:u,289850491,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+786260922,,cycles:u,265812739,100.00,,
+3251019796,,instructions:u,265812739,100.00,,
+741635788,,L1-dcache-loads:u,265812739,100.00,,
+121684201,,L1-dcache-load-misses:u,265812739,100.00,,
+325162773,,cache-references:u,265812739,100.00,,
+124961349,,cache-misses:u,265812739,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+730554157,,ls_dispatch.ld_dispatch:u,210291294,100.00,,
+321661288,,ls_dispatch.store_dispatch:u,210291294,100.00,,
+4437000,,stalled-cycles-frontend:u,210291294,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+936107947,,cycles:u,287958963,100.00,,
+3275117242,,instructions:u,287958963,100.00,,
+677637825,,L1-dcache-loads:u,287958963,100.00,,
+153333588,,L1-dcache-load-misses:u,287958963,100.00,,
+377912795,,cache-references:u,287958963,100.00,,
+147115947,,cache-misses:u,287958963,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+667608429,,ls_dispatch.ld_dispatch:u,247671571,100.00,,
+161109478,,ls_dispatch.store_dispatch:u,247671571,100.00,,
+6308060,,stalled-cycles-frontend:u,247671571,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+1168866471,,cycles:u,311385873,100.00,,
+3885574639,,instructions:u,311385873,100.00,,
+768955134,,L1-dcache-loads:u,311385873,100.00,,
+155773506,,L1-dcache-load-misses:u,311385873,100.00,,
+368793986,,cache-references:u,311385873,100.00,,
+117982466,,cache-misses:u,311385873,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+757261244,,ls_dispatch.ld_dispatch:u,325480333,100.00,,
+130145281,,ls_dispatch.store_dispatch:u,325480333,100.00,,
+7708920,,stalled-cycles-frontend:u,325480333,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+839403537,,cycles:u,228272342,100.00,,
+3426102071,,instructions:u,228272342,100.00,,
+618758180,,L1-dcache-loads:u,228272342,100.00,,
+141082336,,L1-dcache-load-misses:u,228272342,100.00,,
+344561626,,cache-references:u,228272342,100.00,,
+122424038,,cache-misses:u,228272342,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+605276517,,ls_dispatch.ld_dispatch:u,225148437,100.00,,
+30801009,,ls_dispatch.store_dispatch:u,225148437,100.00,,
+6310098,,stalled-cycles-frontend:u,225148437,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+718787246,,cycles:u,199638895,100.00,,
+3251019705,,instructions:u,199638895,100.00,,
+741481088,,L1-dcache-loads:u,199638895,100.00,,
+117805729,,L1-dcache-load-misses:u,199638895,100.00,,
+310526473,,cache-references:u,199638895,100.00,,
+119463643,,cache-misses:u,199638895,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+730620024,,ls_dispatch.ld_dispatch:u,201725108,100.00,,
+321691355,,ls_dispatch.store_dispatch:u,201725108,100.00,,
+4288727,,stalled-cycles-frontend:u,201725108,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+897025604,,cycles:u,262757770,100.00,,
+3410564143,,instructions:u,262757770,100.00,,
+640444021,,L1-dcache-loads:u,262757770,100.00,,
+189005271,,L1-dcache-load-misses:u,262757770,100.00,,
+463577572,,cache-references:u,262757770,100.00,,
+151335941,,cache-misses:u,262757770,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+632828378,,ls_dispatch.ld_dispatch:u,270685142,100.00,,
+14322710,,ls_dispatch.store_dispatch:u,270685142,100.00,,
+7293931,,stalled-cycles-frontend:u,270685142,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+1170717185,,cycles:u,331911261,100.00,,
+3885574670,,instructions:u,331911261,100.00,,
+768647578,,L1-dcache-loads:u,331911261,100.00,,
+155695654,,L1-dcache-load-misses:u,331911261,100.00,,
+366266138,,cache-references:u,331911261,100.00,,
+113971843,,cache-misses:u,331911261,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x12
+calls=24, checksum=-256.038194807
+757251169,,ls_dispatch.ld_dispatch:u,313428373,100.00,,
+130131830,,ls_dispatch.store_dispatch:u,313428373,100.00,,
+7486115,,stalled-cycles-frontend:u,313428373,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+833651382,,cycles:u,233754012,100.00,,
+3426102072,,instructions:u,233754012,100.00,,
+619112953,,L1-dcache-loads:u,233754012,100.00,,
+140819480,,L1-dcache-load-misses:u,233754012,100.00,,
+345399944,,cache-references:u,233754012,100.00,,
+122575265,,cache-misses:u,233754012,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 6x8
+calls=24, checksum=-256.038194807
+605177597,,ls_dispatch.ld_dispatch:u,232044814,100.00,,
+30787134,,ls_dispatch.store_dispatch:u,232044814,100.00,,
+5887570,,stalled-cycles-frontend:u,232044814,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+739434093,,cycles:u,238689130,100.00,,
+3251019939,,instructions:u,238689130,100.00,,
+741314514,,L1-dcache-loads:u,238689130,100.00,,
+117625116,,L1-dcache-load-misses:u,238689130,100.00,,
+304948346,,cache-references:u,238689130,100.00,,
+116426860,,cache-misses:u,238689130,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x16
+calls=24, checksum=-256.038194807
+731090535,,ls_dispatch.ld_dispatch:u,199703016,100.00,,
+321957331,,ls_dispatch.store_dispatch:u,199703016,100.00,,
+4330427,,stalled-cycles-frontend:u,199703016,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+888826064,,cycles:u,241916032,100.00,,
+3410564118,,instructions:u,241916032,100.00,,
+640470181,,L1-dcache-loads:u,241916032,100.00,,
+189364424,,L1-dcache-load-misses:u,241916032,100.00,,
+458326186,,cache-references:u,241916032,100.00,,
+148075473,,cache-misses:u,241916032,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 4x8
+calls=24, checksum=-256.038194807
+632755505,,ls_dispatch.ld_dispatch:u,256947862,100.00,,
+14321426,,ls_dispatch.store_dispatch:u,256947862,100.00,,
+7364601,,stalled-cycles-frontend:u,256947862,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+918239894,,cycles:u,267578569,100.00,,
+3275117225,,instructions:u,267578569,100.00,,
+677698843,,L1-dcache-loads:u,267578569,100.00,,
+153188211,,L1-dcache-load-misses:u,267578569,100.00,,
+374816712,,cache-references:u,267578569,100.00,,
+146706865,,cache-misses:u,267578569,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 512 24 strict_register_blocked 128 3x16
+calls=24, checksum=-256.038194807
+667478914,,ls_dispatch.ld_dispatch:u,256618574,100.00,,
+161061164,,ls_dispatch.store_dispatch:u,256618574,100.00,,
+6061488,,stalled-cycles-frontend:u,256618574,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1699124968,,cycles:u,452815309,100.00,,
+5745053773,,instructions:u,452815309,100.00,,
+1073255788,,L1-dcache-loads:u,452815309,100.00,,
+316724415,,L1-dcache-load-misses:u,452815309,100.00,,
+780981545,,cache-references:u,452815309,100.00,,
+254112902,,cache-misses:u,452815309,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1057134670,,ls_dispatch.ld_dispatch:u,459455436,100.00,,
+26540105,,ls_dispatch.store_dispatch:u,459455436,100.00,,
+11515577,,stalled-cycles-frontend:u,459455436,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1610435432,,cycles:u,421318845,100.00,,
+5519308352,,instructions:u,421318845,100.00,,
+1135133099,,L1-dcache-loads:u,421318845,100.00,,
+260444049,,L1-dcache-load-misses:u,421318845,100.00,,
+659374793,,cache-references:u,421318845,100.00,,
+246603763,,cache-misses:u,421318845,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1115012652,,ls_dispatch.ld_dispatch:u,450590613,100.00,,
+271066926,,ls_dispatch.store_dispatch:u,450590613,100.00,,
+9977398,,stalled-cycles-frontend:u,450590613,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+2204180033,,cycles:u,582435688,100.00,,
+6536737329,,instructions:u,582435688,100.00,,
+1286836505,,L1-dcache-loads:u,582435688,100.00,,
+265981318,,L1-dcache-load-misses:u,582435688,100.00,,
+634741046,,cache-references:u,582435688,100.00,,
+183574944,,cache-misses:u,582435688,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+1265307223,,ls_dispatch.ld_dispatch:u,580197746,100.00,,
+219675429,,ls_dispatch.store_dispatch:u,580197746,100.00,,
+11115403,,stalled-cycles-frontend:u,580197746,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1618755004,,cycles:u,445128520,100.00,,
+5770950793,,instructions:u,445128520,100.00,,
+1037104868,,L1-dcache-loads:u,445128520,100.00,,
+236935032,,L1-dcache-load-misses:u,445128520,100.00,,
+551916893,,cache-references:u,445128520,100.00,,
+194870911,,cache-misses:u,445128520,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1011809362,,ls_dispatch.ld_dispatch:u,441553683,100.00,,
+54012380,,ls_dispatch.store_dispatch:u,441553683,100.00,,
+9977373,,stalled-cycles-frontend:u,441553683,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1317903762,,cycles:u,355833583,100.00,,
+5479145346,,instructions:u,355833583,100.00,,
+1242021192,,L1-dcache-loads:u,355833583,100.00,,
+207731405,,L1-dcache-load-misses:u,355833583,100.00,,
+541629169,,cache-references:u,355833583,100.00,,
+191743573,,cache-misses:u,355833583,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1220638801,,ls_dispatch.ld_dispatch:u,366171636,100.00,,
+538826282,,ls_dispatch.store_dispatch:u,366171636,100.00,,
+7699037,,stalled-cycles-frontend:u,366171636,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1629349074,,cycles:u,442811662,100.00,,
+5519308459,,instructions:u,442811662,100.00,,
+1135011570,,L1-dcache-loads:u,442811662,100.00,,
+260055289,,L1-dcache-load-misses:u,442811662,100.00,,
+660274720,,cache-references:u,442811662,100.00,,
+247586693,,cache-misses:u,442811662,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1114936197,,ls_dispatch.ld_dispatch:u,439936118,100.00,,
+271034363,,ls_dispatch.store_dispatch:u,439936118,100.00,,
+10108966,,stalled-cycles-frontend:u,439936118,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+2189450345,,cycles:u,571910891,100.00,,
+6536737398,,instructions:u,571910891,100.00,,
+1286863071,,L1-dcache-loads:u,571910891,100.00,,
+264472574,,L1-dcache-load-misses:u,571910891,100.00,,
+622969793,,cache-references:u,571910891,100.00,,
+179572393,,cache-misses:u,571910891,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+1265220367,,ls_dispatch.ld_dispatch:u,572002775,100.00,,
+219651016,,ls_dispatch.store_dispatch:u,572002775,100.00,,
+11692051,,stalled-cycles-frontend:u,572002775,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1608361610,,cycles:u,421591263,100.00,,
+5770950783,,instructions:u,421591263,100.00,,
+1037157190,,L1-dcache-loads:u,421591263,100.00,,
+236705639,,L1-dcache-load-misses:u,421591263,100.00,,
+555776803,,cache-references:u,421591263,100.00,,
+196239106,,cache-misses:u,421591263,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1011785528,,ls_dispatch.ld_dispatch:u,454615080,100.00,,
+54016696,,ls_dispatch.store_dispatch:u,454615080,100.00,,
+10333872,,stalled-cycles-frontend:u,454615080,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1333072160,,cycles:u,373632862,100.00,,
+5479145417,,instructions:u,373632862,100.00,,
+1241803885,,L1-dcache-loads:u,373632862,100.00,,
+200389222,,L1-dcache-load-misses:u,373632862,100.00,,
+520705174,,cache-references:u,373632862,100.00,,
+187327406,,cache-misses:u,373632862,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1220566146,,ls_dispatch.ld_dispatch:u,359791214,100.00,,
+538802430,,ls_dispatch.store_dispatch:u,359791214,100.00,,
+7333990,,stalled-cycles-frontend:u,359791214,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1713223490,,cycles:u,481294429,100.00,,
+5745053843,,instructions:u,481294429,100.00,,
+1073196623,,L1-dcache-loads:u,481294429,100.00,,
+316462005,,L1-dcache-load-misses:u,481294429,100.00,,
+784928052,,cache-references:u,481294429,100.00,,
+256920164,,cache-misses:u,481294429,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1057211940,,ls_dispatch.ld_dispatch:u,452061797,100.00,,
+26546719,,ls_dispatch.store_dispatch:u,452061797,100.00,,
+12105686,,stalled-cycles-frontend:u,452061797,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+2200526305,,cycles:u,577959689,100.00,,
+6536737385,,instructions:u,577959689,100.00,,
+1286932987,,L1-dcache-loads:u,577959689,100.00,,
+265131957,,L1-dcache-load-misses:u,577959689,100.00,,
+619617617,,cache-references:u,577959689,100.00,,
+177647142,,cache-misses:u,577959689,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x12
+calls=5, checksum=7033.7328728
+1265474740,,ls_dispatch.ld_dispatch:u,579139174,100.00,,
+219704850,,ls_dispatch.store_dispatch:u,579139174,100.00,,
+11692512,,stalled-cycles-frontend:u,579139174,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1617667176,,cycles:u,444611714,100.00,,
+5770950885,,instructions:u,444611714,100.00,,
+1037045305,,L1-dcache-loads:u,444611714,100.00,,
+236950821,,L1-dcache-load-misses:u,444611714,100.00,,
+555568483,,cache-references:u,444611714,100.00,,
+197120797,,cache-misses:u,444611714,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 6x8
+calls=5, checksum=7033.7328728
+1011834055,,ls_dispatch.ld_dispatch:u,423394009,100.00,,
+54044528,,ls_dispatch.store_dispatch:u,423394009,100.00,,
+10007269,,stalled-cycles-frontend:u,423394009,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1352494593,,cycles:u,397104748,100.00,,
+5479145414,,instructions:u,397104748,100.00,,
+1241600283,,L1-dcache-loads:u,397104748,100.00,,
+207847856,,L1-dcache-load-misses:u,397104748,100.00,,
+539478299,,cache-references:u,397104748,100.00,,
+191194663,,cache-misses:u,397104748,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x16
+calls=5, checksum=7033.7328728
+1220482945,,ls_dispatch.ld_dispatch:u,366454234,100.00,,
+538726477,,ls_dispatch.store_dispatch:u,366454234,100.00,,
+6954341,,stalled-cycles-frontend:u,366454234,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1713833582,,cycles:u,458127894,100.00,,
+5745053796,,instructions:u,458127894,100.00,,
+1073189931,,L1-dcache-loads:u,458127894,100.00,,
+316455719,,L1-dcache-load-misses:u,458127894,100.00,,
+781869823,,cache-references:u,458127894,100.00,,
+253301581,,cache-misses:u,458127894,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 4x8
+calls=5, checksum=7033.7328728
+1057179678,,ls_dispatch.ld_dispatch:u,448445546,100.00,,
+26499617,,ls_dispatch.store_dispatch:u,448445546,100.00,,
+12052930,,stalled-cycles-frontend:u,448445546,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e cycles:u,instructions:u,L1-dcache-loads:u,L1-dcache-load-misses:u,cache-references:u,cache-misses:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1630123380,,cycles:u,446622553,100.00,,
+5519308423,,instructions:u,446622553,100.00,,
+1135067381,,L1-dcache-loads:u,446622553,100.00,,
+261000639,,L1-dcache-load-misses:u,446622553,100.00,,
+676596954,,cache-references:u,446622553,100.00,,
+249805689,,cache-misses:u,446622553,100.00,,
+
+$ taskset -c 4 perf stat --no-big-num -x , -e ls_dispatch.ld_dispatch:u,ls_dispatch.store_dispatch:u,stalled-cycles-frontend:u -- <REPO>/build-microtile-search/microtile_search counter 1024 5 strict_register_blocked 128 3x16
+calls=5, checksum=7033.7328728
+1115023467,,ls_dispatch.ld_dispatch:u,435162767,100.00,,
+271057304,,ls_dispatch.store_dispatch:u,435162767,100.00,,
+9845885,,stalled-cycles-frontend:u,435162767,100.00,,

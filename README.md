@@ -42,6 +42,8 @@ Fast-math is experimental and disabled by default. A future runtime must require
 
 In the CPU blocking experiments, cache blocking alone gave no stable gain. For the 1024 square case, strict register blocking (4×16 microtile, 128³ outer tile) ran in 88.315 ms, **1.466×** versus original strict `ikj` (129.510 ms) and **1.541×** versus strict cache blocking (136.114 ms). Fast-math gave no stable additional gain for the same microkernel.
 
+The strict SSE microtile search compared three 12-accumulator shapes to see whether reducing register spills could improve kernel time. The tested grid supports retaining 4×16. The result covers Ryzen 7 7730U, GCC 15.2.0 under WSL2, and 128³ outer tiles.
+
 ## Documentation
 
 Detailed evidence, options, timing boundaries, and limitations are available in English and Chinese:
@@ -52,3 +54,4 @@ Detailed evidence, options, timing boundaries, and limitations are available in 
 - [Numerical semantics](docs/numerical_semantics_analysis_en.md)
 - [CPU cache blocking experiment](docs/blocked_ikj_en.md)
 - [Register blocking and fast-math experiment](docs/register_fastmath_en.md)
+- [Strict SSE microtile search](experiments/blocked_ikj/ryzen7730u/microtile_search/report_en.md)

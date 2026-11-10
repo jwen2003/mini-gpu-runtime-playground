@@ -12,6 +12,7 @@ template <std::size_t Rows, std::size_t Columns>
     const float* A, const float* B, float* C,
     std::size_t N, std::size_t K, std::size_t depth
 ) {
+    static_assert(Columns % 4 == 0, "full tiles require whole SSE vectors");
     __m128 accumulators[Rows][Columns / 4];
 #pragma GCC unroll 8
     for (std::size_t i = 0; i < Rows; ++i) {
@@ -122,6 +123,9 @@ void matmul_cpu_register_blocked_ikj(
     case RegisterTile::r4c8:  tiled<4, 8>(A, B, C, M, N, K, BM, BN, BK); return;
     case RegisterTile::r4c16: tiled<4, 16>(A, B, C, M, N, K, BM, BN, BK); return;
     case RegisterTile::r8c16: tiled<8, 16>(A, B, C, M, N, K, BM, BN, BK); return;
+    case RegisterTile::r3c16: tiled<3, 16>(A, B, C, M, N, K, BM, BN, BK); return;
+    case RegisterTile::r4c12: tiled<4, 12>(A, B, C, M, N, K, BM, BN, BK); return;
+    case RegisterTile::r6c8:  tiled<6, 8>(A, B, C, M, N, K, BM, BN, BK); return;
     }
     throw std::invalid_argument("unsupported register tile");
 }

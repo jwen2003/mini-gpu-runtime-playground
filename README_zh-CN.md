@@ -42,6 +42,8 @@ fast-math 默认关闭，仅供实验。未来运行时必须由显式 numerical
 
 CPU 分块实验中，单独缓存分块没有稳定收益。1024 方阵的严格寄存器分块（4×16 微块、128³ 外层块）耗时 88.315 毫秒，相对原始严格 `ikj`（129.510 毫秒）为 **1.466×**，相对严格缓存分块（136.114 毫秒）为 **1.541×**。同一微内核启用快速数学后未显示稳定的额外收益。
 
+严格 SSE 微块搜索比较了三种 12 累加器形状，检验减少寄存器溢出能否缩短内核耗时。所测网格支持保留 4×16。结论限于 Ryzen 7 7730U、WSL2 下的 GCC 15.2.0 和 128³ 外层块。
+
 ## 文档索引
 
 详细数据、编译选项、计时边界和局限保留于中文分析文档：
@@ -52,3 +54,4 @@ CPU 分块实验中，单独缓存分块没有稳定收益。1024 方阵的严�
 - [数值语义](docs/numerical_semantics_analysis_zh-CN.md)
 - [CPU 缓存分块实验](docs/blocked_ikj_zh-CN.md)
 - [寄存器分块与快速数学编译实验](docs/register_fastmath_zh-CN.md)
+- [严格 SSE 微块形状探索](experiments/blocked_ikj/ryzen7730u/microtile_search/report_zh-CN.md)
